@@ -1,0 +1,1841 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>NetworkManager Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 858)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">NetworkManager </a></h1>
+				<a id="developerHome" href="../index.html">Robert M. Ryan</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">NetworkManager Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/completionHandler">&nbsp;&nbsp;&nbsp;&nbsp;completionHandler</option>
+	
+	<option value="//api/name/completionQueue">&nbsp;&nbsp;&nbsp;&nbsp;completionQueue</option>
+	
+	<option value="//api/name/credential">&nbsp;&nbsp;&nbsp;&nbsp;credential</option>
+	
+	<option value="//api/name/didBecomeInvalidWithError">&nbsp;&nbsp;&nbsp;&nbsp;didBecomeInvalidWithError</option>
+	
+	<option value="//api/name/didCompleteWithError">&nbsp;&nbsp;&nbsp;&nbsp;didCompleteWithError</option>
+	
+	<option value="//api/name/didFinishDownloadingToURL">&nbsp;&nbsp;&nbsp;&nbsp;didFinishDownloadingToURL</option>
+	
+	<option value="//api/name/didReceiveChallenge">&nbsp;&nbsp;&nbsp;&nbsp;didReceiveChallenge</option>
+	
+	<option value="//api/name/urlSessionDidFinishEventsHandler">&nbsp;&nbsp;&nbsp;&nbsp;urlSessionDidFinishEventsHandler</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/backgroundSessionWithIdentifier:">&nbsp;&nbsp;&nbsp;&nbsp;+ backgroundSessionWithIdentifier:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addOperation:">&nbsp;&nbsp;&nbsp;&nbsp;- addOperation:</option>
+	
+	<option value="//api/name/dataOperationWithRequest:progressHandler:completionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- dataOperationWithRequest:progressHandler:completionHandler:</option>
+	
+	<option value="//api/name/dataOperationWithURL:progressHandler:completionHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- dataOperationWithURL:progressHandler:completionHandler:</option>
+	
+	<option value="//api/name/downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:</option>
+	
+	<option value="//api/name/downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:</option>
+	
+	<option value="//api/name/generateBoundaryString">&nbsp;&nbsp;&nbsp;&nbsp;- generateBoundaryString</option>
+	
+	<option value="//api/name/initWithSessionConfiguration:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithSessionConfiguration:</option>
+	
+	<option value="//api/name/mimeTypeForPath:">&nbsp;&nbsp;&nbsp;&nbsp;- mimeTypeForPath:</option>
+	
+	<option value="//api/name/networkQueue">&nbsp;&nbsp;&nbsp;&nbsp;- networkQueue</option>
+	
+	<option value="//api/name/postUploadToURL:parameters:paths:fieldName:completion:">&nbsp;&nbsp;&nbsp;&nbsp;- postUploadToURL:parameters:paths:fieldName:completion:</option>
+	
+	<option value="//api/name/uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:</option>
+	
+	<option value="//api/name/uploadOperationWithRequest:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- uploadOperationWithRequest:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:</option>
+	
+	<option value="//api/name/uploadOperationWithURL:data:didSendBodyDataHandler:didCompleteWithErrorHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- uploadOperationWithURL:data:didSendBodyDataHandler:didCompleteWithErrorHandler:</option>
+	
+	<option value="//api/name/uploadOperationWithURL:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- uploadOperationWithURL:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Properties">Properties</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Initialization methods">Initialization methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_NetworkTaskOperation factory methods">NetworkTaskOperation factory methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_NSOperationQueue utility methods">NSOperationQueue utility methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_HTTP request utility methods">HTTP request utility methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/completionHandler">completionHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/completionQueue">completionQueue</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/credential">credential</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didBecomeInvalidWithError">didBecomeInvalidWithError</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didCompleteWithError">didCompleteWithError</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didFinishDownloadingToURL">didFinishDownloadingToURL</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didReceiveChallenge">didReceiveChallenge</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/urlSessionDidFinishEventsHandler">urlSessionDidFinishEventsHandler</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/backgroundSessionWithIdentifier:">backgroundSessionWithIdentifier:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addOperation:">addOperation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataOperationWithRequest:progressHandler:completionHandler:">dataOperationWithRequest:progressHandler:completionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataOperationWithURL:progressHandler:completionHandler:">dataOperationWithURL:progressHandler:completionHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:">downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:">downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/generateBoundaryString">generateBoundaryString</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithSessionConfiguration:">initWithSessionConfiguration:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mimeTypeForPath:">mimeTypeForPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/networkQueue">networkQueue</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/postUploadToURL:parameters:paths:fieldName:completion:">postUploadToURL:parameters:paths:fieldName:completion:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:">uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadOperationWithRequest:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:">uploadOperationWithRequest:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadOperationWithURL:data:didSendBodyDataHandler:didCompleteWithErrorHandler:">uploadOperationWithURL:data:didSendBodyDataHandler:didCompleteWithErrorHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadOperationWithURL:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:">uploadOperationWithURL:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="NetworkManager Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">NetworkManager Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">NetworkManager.h<br />NetworkManager.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Network manager</p>
+
+<p>This creates a <code>NSURLSession</code> and manages an collection of <a href="../Classes/NetworkTaskOperation.html"><code>NetworkTaskOperation</code></a>
+objects. The key feature of this class is that you can use it to create
+<code>NSOperation</code>-based <code>NSURLSessionTask</code> objects, which are their own delegates
+(generally the session is, inexplicably, the delegate for
+<code>NSURLSessionTaskDelegate</code> and <code>NSURLSessionTaskDelegate</code>. But this
+session manager will maintain a collection of <code>NetworkTaskOperation</code>
+objects, and when it receives task-related delegate calls, it simply passes
+the call to the appropriate <a href="../Classes/NetworkTaskOperation.html"><code>NetworkTaskOperation</code></a> object.</p>
+
+<p>In short, this, in conjunction with <a href="../Classes/NetworkTaskOperation.html"><code>NetworkTaskOperation</code></a> (and its subclasses),
+achieves task-based delegate calls.</p>
+
+<h3>Usage</h3>
+
+<ol>
+<li><p>Create property to hold <code>NetworkManager</code>:</p>
+
+<pre><code>@property (nonatomic, strong) NetworkManager *networkManager;
+</code></pre></li>
+<li><p>Instantiate <code>NetworkManager</code>:</p>
+
+<pre><code>self.networkManager = [[NetworkManager alloc] init];
+</code></pre></li>
+<li><p>Create task and add it to the manager&rsquo;s queue:</p>
+
+<pre><code> NSOperation *operation = [self.networkManager downloadOperationWithURL:url didWriteDataHandler:^(NetworkDownloadTaskOperation *operation, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+     // now update the UI here
+ } didFinishDownloadingHandler:^(NetworkDownloadTaskOperation *operation, NSURL *location, NSError *error) {
+     // download is done
+ }];
+
+ [self.networkManager addOperation:operation];
+</code></pre></li>
+</ol>
+<div class="note"><p><strong>Note:</strong> The progress/completion blocks will, by default, be called on the main queue. If you want to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQueue"><code>completionQueue</code></a> value.</p></div>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Properties" name="task_Properties"></a>
+						<h3 class="subsubtitle task-title">Properties</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/completionHandler">&nbsp;&nbsp;completionHandler</a></code>
+		<span class="tooltip"><p>The completion handler to be set by app delegate&rsquo;s <code>handleEventsForBackgroundURLSession</code>
+and to be called by <code>URLSessionDidFinishEventsHandler</code>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/urlSessionDidFinishEventsHandler">&nbsp;&nbsp;urlSessionDidFinishEventsHandler</a></code>
+		<span class="tooltip"><p>The block that will be called by <code>URLSessionDidFinishEventsForBackgroundURLSession:</code>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didReceiveChallenge">&nbsp;&nbsp;didReceiveChallenge</a></code>
+		<span class="tooltip"><p>The block that will be called by <code>URLSession:didReceiveChallenge:completionHandler:</code>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didBecomeInvalidWithError">&nbsp;&nbsp;didBecomeInvalidWithError</a></code>
+		<span class="tooltip"><p>The block that will be called by <code>URLSession:didBecomeInvalidWithError:</code>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didFinishDownloadingToURL">&nbsp;&nbsp;didFinishDownloadingToURL</a></code>
+		<span class="tooltip"><p>The block that will be called by <code>URLSession:downloadTask:didFinishDownloadingToURL:</code>.
+Generally we keep the task methods at the task operation class level, but for background
+downloads, we may lose the operations when the app is killed.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didCompleteWithError">&nbsp;&nbsp;didCompleteWithError</a></code>
+		<span class="tooltip"><p>The block that will be called by <code>URLSession:task:didCompleteWithError:</code>.
+Generally we keep the task methods at the task operation class level, but for background
+downloads, we may lose the operations when the app is killed.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/credential">&nbsp;&nbsp;credential</a></code>
+		<span class="tooltip"><p>Credential to be tried if receive session-level authentication challenge.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/completionQueue">&nbsp;&nbsp;completionQueue</a></code>
+		<span class="tooltip"><p>Which queue should completion/progress blocks should be called on. If <code>nil</code>, it will use <code>dispatch_get_main_queue()</code>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Initialization methods" name="task_Initialization methods"></a>
+						<h3 class="subsubtitle task-title">Initialization methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithSessionConfiguration:">&ndash;&nbsp;initWithSessionConfiguration:</a></code>
+		<span class="tooltip"><p>Create session manager using the supplied NSURLSessionConfiguration</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/backgroundSessionWithIdentifier:">+&nbsp;backgroundSessionWithIdentifier:</a></code>
+		<span class="tooltip"><p>Retrieve (and, if necessary create) background session manager</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="NetworkTaskOperation factory methods" name="task_NetworkTaskOperation factory methods"></a>
+						<h3 class="subsubtitle task-title">NetworkTaskOperation factory methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dataOperationWithRequest:progressHandler:completionHandler:">&ndash;&nbsp;dataOperationWithRequest:progressHandler:completionHandler:</a></code>
+		<span class="tooltip"><p>Create data task operation.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dataOperationWithURL:progressHandler:completionHandler:">&ndash;&nbsp;dataOperationWithURL:progressHandler:completionHandler:</a></code>
+		<span class="tooltip"><p>Create data task operation.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:">&ndash;&nbsp;downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:</a></code>
+		<span class="tooltip"><p>Create download task operation.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:">&ndash;&nbsp;downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:</a></code>
+		<span class="tooltip"><p>Create download task operation.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:">&ndash;&nbsp;uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:</a></code>
+		<span class="tooltip"><p>Create upload task operation.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uploadOperationWithURL:data:didSendBodyDataHandler:didCompleteWithErrorHandler:">&ndash;&nbsp;uploadOperationWithURL:data:didSendBodyDataHandler:didCompleteWithErrorHandler:</a></code>
+		<span class="tooltip"><p>Create upload task operation.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uploadOperationWithRequest:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:">&ndash;&nbsp;uploadOperationWithRequest:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:</a></code>
+		<span class="tooltip"><p>Create upload task operation.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uploadOperationWithURL:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:">&ndash;&nbsp;uploadOperationWithURL:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:</a></code>
+		<span class="tooltip"><p>Create upload task operation.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="NSOperationQueue utility methods" name="task_NSOperationQueue utility methods"></a>
+						<h3 class="subsubtitle task-title">NSOperationQueue utility methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/networkQueue">&ndash;&nbsp;networkQueue</a></code>
+		<span class="tooltip"><p>Operation queue for network requests.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addOperation:">&ndash;&nbsp;addOperation:</a></code>
+		<span class="tooltip"><p>Add operation.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="HTTP request utility methods" name="task_HTTP request utility methods"></a>
+						<h3 class="subsubtitle task-title">HTTP request utility methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/postUploadToURL:parameters:paths:fieldName:completion:">&ndash;&nbsp;postUploadToURL:parameters:paths:fieldName:completion:</a></code>
+		<span class="tooltip"><p>Prepare and initiate multipart/form-data request with files</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/mimeTypeForPath:">&ndash;&nbsp;mimeTypeForPath:</a></code>
+		<span class="tooltip"><p>Determine mime type on basis of file extension</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/generateBoundaryString">&ndash;&nbsp;generateBoundaryString</a></code>
+		<span class="tooltip"><p>Generate random boundary string.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/completionHandler" title="completionHandler"></a>
+	<h3 class="subsubtitle method-title">completionHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The completion handler to be set by app delegate&rsquo;s <code>handleEventsForBackgroundURLSession</code>
+and to be called by <code>URLSessionDidFinishEventsHandler</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( void ) completionHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/completionQueue" title="completionQueue"></a>
+	<h3 class="subsubtitle method-title">completionQueue</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Which queue should completion/progress blocks should be called on. If <code>nil</code>, it will use <code>dispatch_get_main_queue()</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) dispatch_queue_t completionQueue</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/credential" title="credential"></a>
+	<h3 class="subsubtitle method-title">credential</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Credential to be tried if receive session-level authentication challenge.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSURLCredential *credential</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didBecomeInvalidWithError" title="didBecomeInvalidWithError"></a>
+	<h3 class="subsubtitle method-title">didBecomeInvalidWithError</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The block that will be called by <code>URLSession:didBecomeInvalidWithError:</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) DidBecomeInvalidWithError didBecomeInvalidWithError</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didCompleteWithError" title="didCompleteWithError"></a>
+	<h3 class="subsubtitle method-title">didCompleteWithError</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The block that will be called by <code>URLSession:task:didCompleteWithError:</code>.
+Generally we keep the task methods at the task operation class level, but for background
+downloads, we may lose the operations when the app is killed.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) DidCompleteWithError didCompleteWithError</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didFinishDownloadingToURL" title="didFinishDownloadingToURL"></a>
+	<h3 class="subsubtitle method-title">didFinishDownloadingToURL</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The block that will be called by <code>URLSession:downloadTask:didFinishDownloadingToURL:</code>.
+Generally we keep the task methods at the task operation class level, but for background
+downloads, we may lose the operations when the app is killed.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) DidFinishDownloadingToURL didFinishDownloadingToURL</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didReceiveChallenge" title="didReceiveChallenge"></a>
+	<h3 class="subsubtitle method-title">didReceiveChallenge</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The block that will be called by <code>URLSession:didReceiveChallenge:completionHandler:</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) DidReceiveChallenge didReceiveChallenge</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/urlSessionDidFinishEventsHandler" title="urlSessionDidFinishEventsHandler"></a>
+	<h3 class="subsubtitle method-title">urlSessionDidFinishEventsHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The block that will be called by <code>URLSessionDidFinishEventsForBackgroundURLSession:</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) URLSessionDidFinishEventsHandler urlSessionDidFinishEventsHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/backgroundSessionWithIdentifier:" title="backgroundSessionWithIdentifier:"></a>
+	<h3 class="subsubtitle method-title">backgroundSessionWithIdentifier:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Retrieve (and, if necessary create) background session manager</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)backgroundSessionWithIdentifier:(NSString *)<em>identifier</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>identifier</em></dt>
+			<dd><p>Background session identifier</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A session manager.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addOperation:" title="addOperation:"></a>
+	<h3 class="subsubtitle method-title">addOperation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add operation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addOperation:(NSOperation *)<em>operation</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>operation</em></dt>
+			<dd><p>The operation to be added to the queue.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>A convenience method to add operation to the network manager&rsquo;s <code>networkQueue</code> operation queue.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dataOperationWithRequest:progressHandler:completionHandler:" title="dataOperationWithRequest:progressHandler:completionHandler:"></a>
+	<h3 class="subsubtitle method-title">dataOperationWithRequest:progressHandler:completionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create data task operation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NetworkDataTaskOperation *)dataOperationWithRequest:(NSURLRequest *)<em>request</em> progressHandler:(ProgressHandler)<em>progressHandler</em> completionHandler:(DidCompleteWithErrorHandler)<em>didCompleteWithErrorHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>request</em></dt>
+			<dd><p>The <code>NSURLRequest</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressHandler</em></dt>
+			<dd><p>The method that will be called with as the data is being downloaded.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didCompleteWithErrorHandler</em></dt>
+			<dd><p>The block that will be called when the upload is done.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns <code>NetworkDataTaskOperation</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="note"><p><strong>Note:</strong> If you supply <code>progressHandler</code>, it is assumed that you will take responsibility for
+handling the individual data chunks as they come in. If you don&rsquo;t provide this block, this
+class will aggregate all of the individual <code>NSData</code> objects into one final one for you.</p></div><div class="note"><p><strong>Note:</strong> The progress/completion blocks will, by default, be called on the main queue. If you want
+to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQueue"><code>completionQueue</code></a> value.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dataOperationWithURL:progressHandler:completionHandler:" title="dataOperationWithURL:progressHandler:completionHandler:"></a>
+	<h3 class="subsubtitle method-title">dataOperationWithURL:progressHandler:completionHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create data task operation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NetworkDataTaskOperation *)dataOperationWithURL:(NSURL *)<em>url</em> progressHandler:(ProgressHandler)<em>progressHandler</em> completionHandler:(DidCompleteWithErrorHandler)<em>didCompleteWithErrorHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>The NSURL.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>progressHandler</em></dt>
+			<dd><p>The method that will be called with as the data is being downloaded.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didCompleteWithErrorHandler</em></dt>
+			<dd><p>The block that will be called when the upload is done.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns <code>NetworkDataTaskOperation</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="note"><p><strong>Note:</strong> If you supply <code>progressHandler</code>, it is assumed that you will take responsibility for
+handling the individual data chunks as they come in. If you don&rsquo;t provide this block, this
+class will aggregate all of the individual <code>NSData</code> objects into one final one for you.</p></div><div class="note"><p><strong>Note:</strong> The progress/completion blocks will, by default, be called on the main queue. If you want
+to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQueue"><code>completionQueue</code></a> value.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:" title="downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:"></a>
+	<h3 class="subsubtitle method-title">downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create download task operation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NetworkDownloadTaskOperation *)downloadOperationWithRequest:(NSURLRequest *)<em>request</em> didWriteDataHandler:(DidWriteDataHandler)<em>didWriteDataHandler</em> didFinishDownloadingHandler:(DidFinishDownloadingHandler)<em>didFinishDownloadingHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>request</em></dt>
+			<dd><p>The <code>NSURLRequest</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didWriteDataHandler</em></dt>
+			<dd><p>The method that will be called with as the data is being downloaded.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didFinishDownloadingHandler</em></dt>
+			<dd><p>The block that will be called when the upload is done.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns <code>NetworkDownloadTaskOperation</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="note"><p><strong>Note:</strong> The progress/completion blocks will, by default, be called on the main queue. If you want
+to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQueue"><code>completionQueue</code></a> value.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:" title="downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:"></a>
+	<h3 class="subsubtitle method-title">downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create download task operation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NetworkDownloadTaskOperation *)downloadOperationWithURL:(NSURL *)<em>url</em> didWriteDataHandler:(DidWriteDataHandler)<em>didWriteDataHandler</em> didFinishDownloadingHandler:(DidFinishDownloadingHandler)<em>didFinishDownloadingHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>The NSURL.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didWriteDataHandler</em></dt>
+			<dd><p>The method that will be called with as the data is being downloaded.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didFinishDownloadingHandler</em></dt>
+			<dd><p>The block that will be called when the upload is done.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns <code>NetworkDownloadTaskOperation</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="note"><p><strong>Note:</strong> The progress/completion blocks will, by default, be called on the main queue. If you want
+to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQueue"><code>completionQueue</code></a> value.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/generateBoundaryString" title="generateBoundaryString"></a>
+	<h3 class="subsubtitle method-title">generateBoundaryString</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generate random boundary string.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)generateBoundaryString</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Random boundary string.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Every time you call this method, you will receive new random boundary string, so call this method only once for each request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithSessionConfiguration:" title="initWithSessionConfiguration:"></a>
+	<h3 class="subsubtitle method-title">initWithSessionConfiguration:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create session manager using the supplied NSURLSessionConfiguration</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)<em>configuration</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>configuration</em></dt>
+			<dd><p>The NSURLSessionConfiguration for the underlying NSURLSession.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A session manager.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/mimeTypeForPath:" title="mimeTypeForPath:"></a>
+	<h3 class="subsubtitle method-title">mimeTypeForPath:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determine mime type on basis of file extension</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)mimeTypeForPath:(NSString *)<em>path</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>path</em></dt>
+			<dd><p>The path of the file being uploaded</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>NSString</code> of mime representation</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/networkQueue" title="networkQueue"></a>
+	<h3 class="subsubtitle method-title">networkQueue</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Operation queue for network requests.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSOperationQueue *)networkQueue</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>An <code>NSOperationQueue</code>. This will instantiate a queue if one hadn&rsquo;t already been created.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If you want, you can add operations to the NSURLSessionManager-provided operation queue.
+This method is provided in case you want to customize the queue or add operations to it yourself.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/postUploadToURL:parameters:paths:fieldName:completion:" title="postUploadToURL:parameters:paths:fieldName:completion:"></a>
+	<h3 class="subsubtitle method-title">postUploadToURL:parameters:paths:fieldName:completion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Prepare and initiate multipart/form-data request with files</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NetworkUploadTaskOperation *)postUploadToURL:(NSURL *)<em>url</em> parameters:(NSDictionary *)<em>parameters</em> paths:(NSArray *)<em>paths</em> fieldName:(NSString *)<em>fieldName</em> completion:(void ( ^ ) ( id responseObject , NSError *error ))<em>completion</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>URL to use for POST request.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>parameters</em></dt>
+			<dd><p><code>NSDictionary</code> for parameters to add to POST request; may be <code>nil</code> if no additional parameters.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>paths</em></dt>
+			<dd><p><code>NSArray</code> of paths of files to add to request; should be fully qualified file paths.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>fieldName</em></dt>
+			<dd><p><code>NSString</code> of field name to use for files specified in <code>paths</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>Block to be invoked when POST request completes (or fails).</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The operation that has been started.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:" title="uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:"></a>
+	<h3 class="subsubtitle method-title">uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create upload task operation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NetworkUploadTaskOperation *)uploadOperationWithRequest:(NSURLRequest *)<em>request</em> data:(NSData *)<em>data</em> didSendBodyDataHandler:(DidSendBodyDataHandler)<em>didSendBodyDataHandler</em> didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)<em>didCompleteWithErrorHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>request</em></dt>
+			<dd><p>The <code>NSURLRequest</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>The body of the request</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didSendBodyDataHandler</em></dt>
+			<dd><p>The method that will be called with periodic updates while data is being uploaded</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didCompleteWithErrorHandler</em></dt>
+			<dd><p>The block that will be called when the upload is done.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns <code>NetworkUploadTaskOperation</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="note"><p><strong>Note:</strong> The progress/completion blocks will, by default, be called on the main queue. If you want
+to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQueue"><code>completionQueue</code></a> value.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uploadOperationWithRequest:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:" title="uploadOperationWithRequest:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:"></a>
+	<h3 class="subsubtitle method-title">uploadOperationWithRequest:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create upload task operation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NetworkUploadTaskOperation *)uploadOperationWithRequest:(NSURLRequest *)<em>request</em> fileURL:(NSURL *)<em>fileURL</em> didSendBodyDataHandler:(DidSendBodyDataHandler)<em>didSendBodyDataHandler</em> didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)<em>didCompleteWithErrorHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>request</em></dt>
+			<dd><p>The <code>NSURLRequest</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>fileURL</em></dt>
+			<dd><p>The URL of the file to be uploaded</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didSendBodyDataHandler</em></dt>
+			<dd><p>The method that will be called with periodic updates while data is being uploaded</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didCompleteWithErrorHandler</em></dt>
+			<dd><p>The block that will be called when the upload is done.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns <code>NetworkUploadTaskOperation</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="note"><p><strong>Note:</strong> The progress/completion blocks will, by default, be called on the main queue. If you want
+to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQueue"><code>completionQueue</code></a> value.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uploadOperationWithURL:data:didSendBodyDataHandler:didCompleteWithErrorHandler:" title="uploadOperationWithURL:data:didSendBodyDataHandler:didCompleteWithErrorHandler:"></a>
+	<h3 class="subsubtitle method-title">uploadOperationWithURL:data:didSendBodyDataHandler:didCompleteWithErrorHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create upload task operation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NetworkUploadTaskOperation *)uploadOperationWithURL:(NSURL *)<em>url</em> data:(NSData *)<em>data</em> didSendBodyDataHandler:(DidSendBodyDataHandler)<em>didSendBodyDataHandler</em> didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)<em>didCompleteWithErrorHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>The NSURL.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>The body of the request</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didSendBodyDataHandler</em></dt>
+			<dd><p>The method that will be called with periodic updates while data is being uploaded</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didCompleteWithErrorHandler</em></dt>
+			<dd><p>The block that will be called when the upload is done.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns <code>NetworkUploadTaskOperation</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="note"><p><strong>Note:</strong> The progress/completion blocks will, by default, be called on the main queue. If you want
+to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQueue"><code>completionQueue</code></a> value.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uploadOperationWithURL:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:" title="uploadOperationWithURL:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:"></a>
+	<h3 class="subsubtitle method-title">uploadOperationWithURL:fileURL:didSendBodyDataHandler:didCompleteWithErrorHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create upload task operation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NetworkUploadTaskOperation *)uploadOperationWithURL:(NSURL *)<em>url</em> fileURL:(NSURL *)<em>fileURL</em> didSendBodyDataHandler:(DidSendBodyDataHandler)<em>didSendBodyDataHandler</em> didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)<em>didCompleteWithErrorHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>The NSURL.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>fileURL</em></dt>
+			<dd><p>The URL of the file to be uploaded</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didSendBodyDataHandler</em></dt>
+			<dd><p>The method that will be called with periodic updates while data is being uploaded</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didCompleteWithErrorHandler</em></dt>
+			<dd><p>The block that will be called when the upload is done.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns <code>NetworkUploadTaskOperation</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="note"><p><strong>Note:</strong> The progress/completion blocks will, by default, be called on the main queue. If you want
+to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQueue"><code>completionQueue</code></a> value.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 Robert M. Ryan. All rights reserved. (Last updated: 2014-06-10)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 858)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

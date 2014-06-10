@@ -1,18 +1,20 @@
-## NetworkManager - a NSOperation-based implementation of delegate-based NSURLSession
+## NetworkManager 
+
+### A NSOperation-based implementation of delegate-based NSURLSession
 
 --
 
 This is an demonstration of a `NSOperation`-based implementation of delegate-based `NSURLSession`.
 
-Because the delegate-based `NSURLSession` object uses a single object as the delegate for both session and task delegate methods.
+Because the delegate-based `NSURLSession` object uses a single object as the delegate for both session and task delegate methods, one has to maintain a mapping between the `identifier` of the various `NSURLSessionTask` objects and the associated `NSOperation` subclass object. Once that is done, the `NSURLSessionTaskDelegate` object can use that cross reference to invoke the appropriate method in the `NSOperation` subclass.
 
-This is for illustrative purposes only. 
+This is for illustrative purposes only.
 
 Developed in Xcode 5.1.1 for iOS 7.0+, also tested on Xcode 6.0 Beta.
 
 ## Class Reference
 
-http://robertmryan.github.io/NetworkManager
+http://robertmryan.github.io/NetworkManager/Classes/NetworkManager.html
 
 ## License
 

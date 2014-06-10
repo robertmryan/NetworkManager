@@ -12,15 +12,22 @@
 		83D551DA1947AF93003843B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D551D91947AF93003843B9 /* UIKit.framework */; };
 		83D551E01947AF93003843B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83D551DE1947AF93003843B9 /* InfoPlist.strings */; };
 		83D551E21947AF94003843B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D551E11947AF94003843B9 /* main.m */; };
-		83D551E61947AF94003843B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D551E51947AF94003843B9 /* AppDelegate.m */; };
-		83D551E91947AF94003843B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D551E71947AF94003843B9 /* Main.storyboard */; };
-		83D551EC1947AF94003843B9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D551EB1947AF94003843B9 /* ViewController.m */; };
 		83D551EE1947AF94003843B9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83D551ED1947AF94003843B9 /* Images.xcassets */; };
 		83D551F51947AF95003843B9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D551F41947AF95003843B9 /* XCTest.framework */; };
 		83D551F61947AF95003843B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D551D51947AF93003843B9 /* Foundation.framework */; };
 		83D551F71947AF95003843B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D551D91947AF93003843B9 /* UIKit.framework */; };
 		83D551FF1947AF95003843B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83D551FD1947AF95003843B9 /* InfoPlist.strings */; };
 		83D552011947AF95003843B9 /* NetworkManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D552001947AF95003843B9 /* NetworkManagerTests.m */; };
+		83D5521D1947B02D003843B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D5520D1947B02D003843B9 /* AppDelegate.m */; };
+		83D5521E1947B02D003843B9 /* NetworkRequestProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D5520F1947B02D003843B9 /* NetworkRequestProgressCell.m */; };
+		83D5521F1947B02D003843B9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D552111947B02D003843B9 /* ViewController.m */; };
+		83D552201947B02D003843B9 /* NetworkDataTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D552141947B02D003843B9 /* NetworkDataTaskOperation.m */; };
+		83D552211947B02D003843B9 /* NetworkDownloadTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D552161947B02D003843B9 /* NetworkDownloadTaskOperation.m */; };
+		83D552221947B02D003843B9 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D552181947B02D003843B9 /* NetworkManager.m */; };
+		83D552231947B02D003843B9 /* NetworkTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D5521A1947B02D003843B9 /* NetworkTaskOperation.m */; };
+		83D552241947B02D003843B9 /* NetworkUploadTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D5521C1947B02D003843B9 /* NetworkUploadTaskOperation.m */; };
+		83D552261947B040003843B9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 83D552251947B040003843B9 /* README.md */; };
+		83D552281947B0E2003843B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D552271947B0E2003843B9 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,17 +49,30 @@
 		83D551DF1947AF93003843B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83D551E11947AF94003843B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		83D551E31947AF94003843B9 /* NetworkManager-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NetworkManager-Prefix.pch"; sourceTree = "<group>"; };
-		83D551E41947AF94003843B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		83D551E51947AF94003843B9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		83D551E81947AF94003843B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		83D551EA1947AF94003843B9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		83D551EB1947AF94003843B9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		83D551ED1947AF94003843B9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		83D551F31947AF95003843B9 /* NetworkManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83D551F41947AF95003843B9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		83D551FC1947AF95003843B9 /* NetworkManagerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NetworkManagerTests-Info.plist"; sourceTree = "<group>"; };
 		83D551FE1947AF95003843B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83D552001947AF95003843B9 /* NetworkManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManagerTests.m; sourceTree = "<group>"; };
+		83D5520C1947B02D003843B9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		83D5520D1947B02D003843B9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		83D5520E1947B02D003843B9 /* NetworkRequestProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRequestProgressCell.h; sourceTree = "<group>"; };
+		83D5520F1947B02D003843B9 /* NetworkRequestProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequestProgressCell.m; sourceTree = "<group>"; };
+		83D552101947B02D003843B9 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		83D552111947B02D003843B9 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		83D552131947B02D003843B9 /* NetworkDataTaskOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkDataTaskOperation.h; sourceTree = "<group>"; };
+		83D552141947B02D003843B9 /* NetworkDataTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkDataTaskOperation.m; sourceTree = "<group>"; };
+		83D552151947B02D003843B9 /* NetworkDownloadTaskOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkDownloadTaskOperation.h; sourceTree = "<group>"; };
+		83D552161947B02D003843B9 /* NetworkDownloadTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkDownloadTaskOperation.m; sourceTree = "<group>"; };
+		83D552171947B02D003843B9 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		83D552181947B02D003843B9 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		83D552191947B02D003843B9 /* NetworkTaskOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkTaskOperation.h; sourceTree = "<group>"; };
+		83D5521A1947B02D003843B9 /* NetworkTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkTaskOperation.m; sourceTree = "<group>"; };
+		83D5521B1947B02D003843B9 /* NetworkUploadTaskOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUploadTaskOperation.h; sourceTree = "<group>"; };
+		83D5521C1947B02D003843B9 /* NetworkUploadTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUploadTaskOperation.m; sourceTree = "<group>"; };
+		83D552251947B040003843B9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		83D552271947B0E2003843B9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +102,7 @@
 		83D551C91947AF93003843B9 = {
 			isa = PBXGroup;
 			children = (
+				83D552251947B040003843B9 /* README.md */,
 				83D551DB1947AF93003843B9 /* NetworkManager */,
 				83D551FA1947AF95003843B9 /* NetworkManagerTests */,
 				83D551D41947AF93003843B9 /* Frameworks */,
@@ -112,11 +133,7 @@
 		83D551DB1947AF93003843B9 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				83D551E41947AF94003843B9 /* AppDelegate.h */,
-				83D551E51947AF94003843B9 /* AppDelegate.m */,
-				83D551E71947AF94003843B9 /* Main.storyboard */,
-				83D551EA1947AF94003843B9 /* ViewController.h */,
-				83D551EB1947AF94003843B9 /* ViewController.m */,
+				83D5520A1947B02D003843B9 /* Source */,
 				83D551ED1947AF94003843B9 /* Images.xcassets */,
 				83D551DC1947AF93003843B9 /* Supporting Files */,
 			);
@@ -150,6 +167,46 @@
 				83D551FD1947AF95003843B9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83D5520A1947B02D003843B9 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				83D5520B1947B02D003843B9 /* Demonstration */,
+				83D552121947B02D003843B9 /* NetworkManager */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		83D5520B1947B02D003843B9 /* Demonstration */ = {
+			isa = PBXGroup;
+			children = (
+				83D5520C1947B02D003843B9 /* AppDelegate.h */,
+				83D5520D1947B02D003843B9 /* AppDelegate.m */,
+				83D5520E1947B02D003843B9 /* NetworkRequestProgressCell.h */,
+				83D5520F1947B02D003843B9 /* NetworkRequestProgressCell.m */,
+				83D552101947B02D003843B9 /* ViewController.h */,
+				83D552111947B02D003843B9 /* ViewController.m */,
+				83D552271947B0E2003843B9 /* Main.storyboard */,
+			);
+			path = Demonstration;
+			sourceTree = "<group>";
+		};
+		83D552121947B02D003843B9 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				83D552131947B02D003843B9 /* NetworkDataTaskOperation.h */,
+				83D552141947B02D003843B9 /* NetworkDataTaskOperation.m */,
+				83D552151947B02D003843B9 /* NetworkDownloadTaskOperation.h */,
+				83D552161947B02D003843B9 /* NetworkDownloadTaskOperation.m */,
+				83D552171947B02D003843B9 /* NetworkManager.h */,
+				83D552181947B02D003843B9 /* NetworkManager.m */,
+				83D552191947B02D003843B9 /* NetworkTaskOperation.h */,
+				83D5521A1947B02D003843B9 /* NetworkTaskOperation.m */,
+				83D5521B1947B02D003843B9 /* NetworkUploadTaskOperation.h */,
+				83D5521C1947B02D003843B9 /* NetworkUploadTaskOperation.m */,
+			);
+			path = NetworkManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +285,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83D552261947B040003843B9 /* README.md in Resources */,
 				83D551EE1947AF94003843B9 /* Images.xcassets in Resources */,
 				83D551E01947AF93003843B9 /* InfoPlist.strings in Resources */,
-				83D551E91947AF94003843B9 /* Main.storyboard in Resources */,
+				83D552281947B0E2003843B9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +307,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83D551EC1947AF94003843B9 /* ViewController.m in Sources */,
-				83D551E61947AF94003843B9 /* AppDelegate.m in Sources */,
+				83D5521D1947B02D003843B9 /* AppDelegate.m in Sources */,
+				83D552221947B02D003843B9 /* NetworkManager.m in Sources */,
+				83D552211947B02D003843B9 /* NetworkDownloadTaskOperation.m in Sources */,
+				83D5521E1947B02D003843B9 /* NetworkRequestProgressCell.m in Sources */,
+				83D5521F1947B02D003843B9 /* ViewController.m in Sources */,
+				83D552201947B02D003843B9 /* NetworkDataTaskOperation.m in Sources */,
 				83D551E21947AF94003843B9 /* main.m in Sources */,
+				83D552241947B02D003843B9 /* NetworkUploadTaskOperation.m in Sources */,
+				83D552231947B02D003843B9 /* NetworkTaskOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,14 +344,6 @@
 				83D551DF1947AF93003843B9 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		83D551E71947AF94003843B9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				83D551E81947AF94003843B9 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		83D551FD1947AF95003843B9 /* InfoPlist.strings */ = {
@@ -456,6 +512,7 @@
 				83D552061947AF96003843B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83D552071947AF96003843B9 /* Build configuration list for PBXNativeTarget "NetworkManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +521,7 @@
 				83D552091947AF96003843B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

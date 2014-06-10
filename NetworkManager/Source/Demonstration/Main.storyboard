@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="HAA-SX-g8z">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller - Operation-based NSURLSession-->
+        <scene sceneID="RWn-WG-Fyn">
+            <objects>
+                <tableViewController id="xzd-xI-nPQ" customClass="ViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6w4-cw-U5O">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NetworkRequestProgressCell" id="12c-06-G35" customClass="NetworkRequestProgressCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="12c-06-G35" id="sxV-BI-lIw">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLd-1D-mHN">
+                                            <rect key="frame" x="20" y="2" width="280" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <progressView appearanceType="aqua" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="v48-ZU-hFM">
+                                            <rect key="frame" x="20" y="31" width="280" height="2"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </progressView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="GLd-1D-mHN" secondAttribute="trailing" constant="20" symbolic="YES" id="4qB-dC-v2b"/>
+                                        <constraint firstItem="GLd-1D-mHN" firstAttribute="leading" secondItem="sxV-BI-lIw" secondAttribute="leading" constant="20" symbolic="YES" id="OaG-2V-Cvd"/>
+                                        <constraint firstItem="GLd-1D-mHN" firstAttribute="leading" secondItem="v48-ZU-hFM" secondAttribute="leading" id="afz-fN-Fyo"/>
+                                        <constraint firstAttribute="bottom" secondItem="GLd-1D-mHN" secondAttribute="bottom" constant="20" symbolic="YES" id="jAt-1l-9TF"/>
+                                        <constraint firstItem="v48-ZU-hFM" firstAttribute="trailing" secondItem="GLd-1D-mHN" secondAttribute="trailing" id="sOH-a8-dMo"/>
+                                        <constraint firstItem="v48-ZU-hFM" firstAttribute="top" secondItem="GLd-1D-mHN" secondAttribute="bottom" constant="8" symbolic="YES" id="uDQ-Wy-tHl"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="networkRequestLabel" destination="GLd-1D-mHN" id="dMi-oD-vsG"/>
+                                    <outlet property="progressView" destination="v48-ZU-hFM" id="sME-kC-te1"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xzd-xI-nPQ" id="EgF-BY-d2e"/>
+                            <outlet property="delegate" destination="xzd-xI-nPQ" id="Udl-0Z-eqL"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Operation-based NSURLSession" id="riR-oY-vGl"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8HU-Ei-xcs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="116"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="za7-M0-yBG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HAA-SX-g8z" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bvs-fh-BHd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xzd-xI-nPQ" kind="relationship" relationship="rootViewController" id="SEI-6u-3Mh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ajz-Zd-QaH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="228" y="116"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

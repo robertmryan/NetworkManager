@@ -17,6 +17,7 @@ static NSMutableDictionary *_backgroundSessions = nil;
 @property (nonatomic, strong) NSMutableDictionary *operations;
 @property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) NSOperationQueue *networkQueue;
+@property (nonatomic, getter = isBackgroundSession) BOOL backgroundSession;
 
 @end
 
@@ -72,8 +73,8 @@ static NSMutableDictionary *_backgroundSessions = nil;
         configuration = [NSURLSessionConfiguration backgroundSessionConfiguration:identifier];
 #endif
 
-
         manager = [[self alloc] initWithSessionConfiguration:configuration];
+        manager.backgroundSession = YES;
         _backgroundSessions[identifier] = manager;
     }
 
@@ -225,7 +226,8 @@ static NSMutableDictionary *_backgroundSessions = nil;
         if (!_networkQueue) {
             _networkQueue = [[NSOperationQueue alloc] init];
             _networkQueue.name = @"NetworkManager.queue";
-            _networkQueue.maxConcurrentOperationCount = 4;
+            if (![self isBackgroundSession])
+                _networkQueue.maxConcurrentOperationCount = 4;
         }
 
         return _networkQueue;

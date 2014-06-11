@@ -28,21 +28,44 @@ typedef void(^DidWriteDataHandler)(NetworkDownloadTaskOperation *operation,
 
 /** Network Download Task Operation
  *
- * This operation is instantiated by NetworkManager when performing an download. You will not have to
+ * This operation is instantiated by `<NetworkManager>` when performing an download. You will not have to
  * interact directly with this class.
  */
 @interface NetworkDownloadTaskOperation : NetworkTaskOperation <NSURLSessionDownloadDelegate>
 
-/// Block called when the download finishes.
+/// ----------------
+/// @name Properties
+/// ----------------
 
+/** Block called when the download finishes.
+ 
+ Uses the following typedef:
+
+    typedef void(^DidFinishDownloadingHandler)(NetworkDownloadTaskOperation *operation,
+                                               NSURL *location,
+                                               NSError *error);
+ */
 @property (nonatomic, copy) DidFinishDownloadingHandler didFinishDownloadingHandler;
 
-/// Block called when download is resumed.
+/** Block called when download is resumed.
+ 
+ Uses the following typedef:
 
+    typedef void(^DidResumeHandler)(NetworkDownloadTaskOperation *operation,
+                                    int64_t offset,
+                                    int64_t expectedTotalBytes);
+ */
 @property (nonatomic, copy) DidResumeHandler            didResumeHandler;
 
-/// Block called as data is downloaded and written to the file.
+/** Block called as data is downloaded and written to the file.
+ 
+ Uses the following typedef:
 
+    typedef void(^DidWriteDataHandler)(NetworkDownloadTaskOperation *operation,
+                                       int64_t bytesWritten,
+                                       int64_t totalBytesWritten,
+                                       int64_t totalBytesExpectedToWrite);
+ */
 @property (nonatomic, copy) DidWriteDataHandler         didWriteDataHandler;
 
 @end

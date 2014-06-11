@@ -12,54 +12,111 @@
 
 @class NetworkDataTaskOperation;
 
-/** Called by didReceiveResponse */
-
 typedef void(^DidReceiveResponseHandler)(NetworkDataTaskOperation *operation,
                                          NSURLResponse *response,
                                          void(^completionHandler)(NSURLSessionResponseDisposition disposition));
-
-/** Called by didReceiveData */
 
 typedef void(^DidReceiveDataHandler)(NetworkDataTaskOperation *operation,
                                      NSData *data,
                                      long long totalBytesExpected,
                                      long long bytesReceived);
 
-/** Called by didReceiveData */
-
 typedef void(^ProgressHandler)(NetworkDataTaskOperation *operation,
                                long long totalBytesExpected,
                                long long bytesReceived);
 
-/** Called by willCacheResponse */
-
 typedef void(^WillCacheResponseHandler)(NetworkDataTaskOperation *operation,
                                         NSCachedURLResponse *proposedResponse,
                                         void(^completionHandler)(NSCachedURLResponse *cachedResponse));
-
-/** Called by didBecomeDownloadTask */
 
 typedef void(^DidBecomeDownloadTaskHandler)(NetworkDataTaskOperation *operation,
                                             NSURLSessionDownloadTask *downloadTask);
 
 /** Operation that wraps delegate-based NSURLSessionDataDask.
  *
- * This uses a `NSURLSession` that was created with delegate, creating
- * `NSURLSessionDataTask` without `completionHandler` block. This conforms
- * to `NSURLSessionTaskDelegate` and `NSURLSessionDataDelegate`. But because
- * those delegates are specified at the session, this is used in conjunction
- * with `NSURLSessionManager` which maintains an dictionary containing
- * the operations, keyed by the task identifier, and the `NSURLSessionManager`
- * will receive delegate calls, identify the appropriate
- * `NetworkDataTaskOperation`, and pass along the delegate call
- * to the operation (if present).
+ * This is a `<NetworkTaskOperation>` subclass instantiated by `<NetworkManager>` method
+ * `dataOperationWithRequest:progressHandler:completionHandler:`.
+ * This implements the `NSURLSessionTaskDelegate` methods, which the
+ * `<NetworkManager>` will invoke as it (the actual task delegate) 
+ * receives its delegate calls.
  */
 @interface NetworkDataTaskOperation : NetworkTaskOperation <NSURLSessionDataDelegate>
 
+/// ----------------
+/// @name Properties
+/// ----------------
+
+/** Called by `NSURLSessionDataDelegate` method `URLSession:dataTask:didReceiveResponse:completionHandler:`.
+
+ Uses the following typdef:
+
+    typedef void(^DidReceiveResponseHandler)(NetworkDataTaskOperation *operation,
+                                             NSURLResponse *response,
+                                             void(^completionHandler)(NSURLSessionResponseDisposition disposition));
+ */
+
 @property (nonatomic, copy) DidReceiveResponseHandler    didReceiveResponseHandler;
+
+/** Called by `NSURLSessionDataDelegate` method `URLSession:dataTask:didReceiveData:`.
+
+ Use this block if you do not want the `NetworkDataTaskOperation` to build a `NSData` object
+ with the entire response, but rather if you're going to handle the data as it comes in yourself
+ (e.g. you have your own streaming method or are going to be processing the response as it comes
+ in, rather than waiting for the entire response).
+ 
+ Uses the following typedef:
+ 
+    typedef void(^DidReceiveDataHandler)(NetworkDataTaskOperation *operation,
+                                         NSData *data,
+                                         long long totalBytesExpected,
+                                         long long bytesReceived);
+
+ @note The `totalBytesExpected` parameter of this block is provided by the server, and as such, it is not entirely reliable. Also note that if it could not be determined, `totalBytesExpected` may be reported as -1.
+
+ @see progressHandler
+
+ */
+
 @property (nonatomic, copy) DidReceiveDataHandler        didReceiveDataHandler;
+
+/** Called by `NSURLSessionDataDelegate` method `URLSession:dataTask:didReceiveData:`
+
+ Use this block if you do want the `NetworkDataTaskOperation` to build a `NSData` object
+ with the entire response, but simply want to be notified of its progress.
+
+ Uses the following typedef:
+
+    typedef void(^ProgressHandler)(NetworkDataTaskOperation *operation,
+                                   long long totalBytesExpected,
+                                   long long bytesReceived);
+
+ @note The `totalBytesExpected` parameter of this block is provided by the server, and as such, it is not entirely reliable. Also note that if it could not be determined, `totalBytesExpected` may be reported as -1.
+
+ @see didReceiveDataHandler
+
+ */
+
 @property (nonatomic, copy) ProgressHandler              progressHandler;
+
+/** Called by `NSURLSessionDataDelegate` method `URLSession:dataTask:willCacheResponse:completionHandler:` 
+ 
+ Uses the following typedef:
+ 
+    typedef void(^WillCacheResponseHandler)(NetworkDataTaskOperation *operation,
+                                            NSCachedURLResponse *proposedResponse,
+                                            void(^completionHandler)(NSCachedURLResponse *cachedResponse));
+*/
+
 @property (nonatomic, copy) WillCacheResponseHandler     willCacheResponseHandler;
+
+/** Called by `NSURLSessionDataDelegate` method `URLSession:dataTask:didBecomeDownloadTask:` 
+ 
+ Uses the following typdef:
+
+    typedef void(^DidBecomeDownloadTaskHandler)(NetworkDataTaskOperation *operation,
+                                                NSURLSessionDownloadTask *downloadTask);
+*/
+
 @property (nonatomic, copy) DidBecomeDownloadTaskHandler didBecomeDownloadTaskHandler;
 
 @end

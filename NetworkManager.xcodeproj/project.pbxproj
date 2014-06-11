@@ -195,14 +195,14 @@
 		83D552121947B02D003843B9 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				83D552131947B02D003843B9 /* NetworkDataTaskOperation.h */,
-				83D552141947B02D003843B9 /* NetworkDataTaskOperation.m */,
-				83D552151947B02D003843B9 /* NetworkDownloadTaskOperation.h */,
-				83D552161947B02D003843B9 /* NetworkDownloadTaskOperation.m */,
 				83D552171947B02D003843B9 /* NetworkManager.h */,
 				83D552181947B02D003843B9 /* NetworkManager.m */,
 				83D552191947B02D003843B9 /* NetworkTaskOperation.h */,
 				83D5521A1947B02D003843B9 /* NetworkTaskOperation.m */,
+				83D552131947B02D003843B9 /* NetworkDataTaskOperation.h */,
+				83D552141947B02D003843B9 /* NetworkDataTaskOperation.m */,
+				83D552151947B02D003843B9 /* NetworkDownloadTaskOperation.h */,
+				83D552161947B02D003843B9 /* NetworkDownloadTaskOperation.m */,
 				83D5521B1947B02D003843B9 /* NetworkUploadTaskOperation.h */,
 				83D5521C1947B02D003843B9 /* NetworkUploadTaskOperation.m */,
 			);

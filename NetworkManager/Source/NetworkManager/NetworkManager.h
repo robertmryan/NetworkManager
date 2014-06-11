@@ -49,7 +49,7 @@ the call to the appropriate `<NetworkTaskOperation>` object.
 In short, this, in conjunction with `<NetworkTaskOperation>` (and its subclasses),
 achieves task-based delegate calls.
 
-###Usage
+##Usage
 
  1. Create property to hold `NetworkManager`:
  
@@ -61,15 +61,16 @@ achieves task-based delegate calls.
 
  3. Create task and add it to the manager's queue:
  
-        NSOperation *operation = [self.networkManager downloadOperationWithURL:url didWriteDataHandler:^(NetworkDownloadTaskOperation *operation, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+       NSOperation *operation = [self.networkManager downloadOperationWithURL:url didWriteDataHandler:^(NetworkDownloadTaskOperation *operation, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
             // now update the UI here
-        } didFinishDownloadingHandler:^(NetworkDownloadTaskOperation *operation, NSURL *location, NSError *error) {
-            // download is done
-        }];
+       } didFinishDownloadingHandler:^(NetworkDownloadTaskOperation *operation, NSURL *location, NSError *error) {
+           // download is done
+       }];
 
-        [self.networkManager addOperation:operation];
+       [self.networkManager addOperation:operation];
  
  @note The progress/completion blocks will, by default, be called on the main queue. If you want to use a different GCD queue, specify a non-nil `<completionQueue>` value.
+
 */
 
 @interface NetworkManager : NSObject
@@ -111,7 +112,11 @@ achieves task-based delegate calls.
  */
 @property (nonatomic, strong) NSURLCredential *credential;
 
-/** Which queue should completion/progress blocks should be called on. If `nil`, it will use `dispatch_get_main_queue()`.
+/** The GCD queue to which completion/progress blocks will be dispatched. If `nil`, it will use `dispatch_get_main_queue()`.
+ *
+ * Often, its useful to have the completion blocks run on the main queue (as you're generally updating the UI).
+ * But if you're doing something on a background thread that doesn't rely on UI updates (or if performing tests
+ * in the absence of a UI), you might want to use a background queue.
  */
 @property (nonatomic, strong) dispatch_queue_t completionQueue;
 

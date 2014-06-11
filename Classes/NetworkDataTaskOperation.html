@@ -38,6 +38,19 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/didBecomeDownloadTaskHandler">&nbsp;&nbsp;&nbsp;&nbsp;didBecomeDownloadTaskHandler</option>
+	
+	<option value="//api/name/didReceiveDataHandler">&nbsp;&nbsp;&nbsp;&nbsp;didReceiveDataHandler</option>
+	
+	<option value="//api/name/didReceiveResponseHandler">&nbsp;&nbsp;&nbsp;&nbsp;didReceiveResponseHandler</option>
+	
+	<option value="//api/name/progressHandler">&nbsp;&nbsp;&nbsp;&nbsp;progressHandler</option>
+	
+	<option value="//api/name/willCacheResponseHandler">&nbsp;&nbsp;&nbsp;&nbsp;willCacheResponseHandler</option>
+	
+	
 	
 	
 	
@@ -62,11 +75,27 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Properties">Properties</a></span></li>
+	
 </ul></li>
 
 
 
 
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didBecomeDownloadTaskHandler">didBecomeDownloadTaskHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didReceiveDataHandler">didReceiveDataHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didReceiveResponseHandler">didReceiveResponseHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/progressHandler">progressHandler</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/willCacheResponseHandler">willCacheResponseHandler</a></span></li>
+	
+</ul></li>
 
 
 
@@ -118,15 +147,11 @@
 						<h2 class="subtitle subtitle-overview">Overview</h2>
 						<p>Operation that wraps delegate-based NSURLSessionDataDask.</p>
 
-<p>This uses a <code>NSURLSession</code> that was created with delegate, creating
-<code>NSURLSessionDataTask</code> without <code>completionHandler</code> block. This conforms
-to <code>NSURLSessionTaskDelegate</code> and <code>NSURLSessionDataDelegate</code>. But because
-those delegates are specified at the session, this is used in conjunction
-with <code>NSURLSessionManager</code> which maintains an dictionary containing
-the operations, keyed by the task identifier, and the <code>NSURLSessionManager</code>
-will receive delegate calls, identify the appropriate
-<code>NetworkDataTaskOperation</code>, and pass along the delegate call
-to the operation (if present).</p>
+<p>This is a <a href="../Classes/NetworkTaskOperation.html"><code>NetworkTaskOperation</code></a> subclass instantiated by <a href="../Classes/NetworkManager.html"><code>NetworkManager</code></a> method
+<code>dataOperationWithRequest:progressHandler:completionHandler:</code>.
+This implements the <code>NSURLSessionTaskDelegate</code> methods, which the
+<a href="../Classes/NetworkManager.html"><code>NetworkManager</code></a> will invoke as it (the actual task delegate)
+receives its delegate calls.</p>
 					</div>
 					
 					
@@ -138,8 +163,51 @@ to the operation (if present).</p>
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
 						
+						<a title="Properties" name="task_Properties"></a>
+						<h3 class="subsubtitle task-title">Properties</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didReceiveResponseHandler">&nbsp;&nbsp;didReceiveResponseHandler</a></code>
+		<span class="tooltip"><p>Called by <code>NSURLSessionDataDelegate</code> method <code>URLSession:dataTask:didReceiveResponse:completionHandler:</code>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didReceiveDataHandler">&nbsp;&nbsp;didReceiveDataHandler</a></code>
+		<span class="tooltip"><p>Called by <code>NSURLSessionDataDelegate</code> method <code>URLSession:dataTask:didReceiveData:</code>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/progressHandler">&nbsp;&nbsp;progressHandler</a></code>
+		<span class="tooltip"><p>Called by <code>NSURLSessionDataDelegate</code> method <code>URLSession:dataTask:didReceiveData:</code></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/willCacheResponseHandler">&nbsp;&nbsp;willCacheResponseHandler</a></code>
+		<span class="tooltip"><p>Called by <code>NSURLSessionDataDelegate</code> method <code>URLSession:dataTask:willCacheResponse:completionHandler:</code></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didBecomeDownloadTaskHandler">&nbsp;&nbsp;didBecomeDownloadTaskHandler</a></code>
+		<span class="tooltip"><p>Called by <code>NSURLSessionDataDelegate</code> method <code>URLSession:dataTask:didBecomeDownloadTask:</code></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
 						
 						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -157,6 +225,268 @@ to the operation (if present).</p>
 					
 					
 					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/didBecomeDownloadTaskHandler" title="didBecomeDownloadTaskHandler"></a>
+	<h3 class="subsubtitle method-title">didBecomeDownloadTaskHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called by <code>NSURLSessionDataDelegate</code> method <code>URLSession:dataTask:didBecomeDownloadTask:</code></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) DidBecomeDownloadTaskHandler didBecomeDownloadTaskHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Uses the following typdef:</p>
+
+<pre><code>typedef void(^DidBecomeDownloadTaskHandler)(NetworkDataTaskOperation *operation,
+                                            NSURLSessionDownloadTask *downloadTask);
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkDataTaskOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didReceiveDataHandler" title="didReceiveDataHandler"></a>
+	<h3 class="subsubtitle method-title">didReceiveDataHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called by <code>NSURLSessionDataDelegate</code> method <code>URLSession:dataTask:didReceiveData:</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) DidReceiveDataHandler didReceiveDataHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this block if you do not want the <code>NetworkDataTaskOperation</code> to build a <code>NSData</code> object
+with the entire response, but rather if you&rsquo;re going to handle the data as it comes in yourself
+(e.g. you have your own streaming method or are going to be processing the response as it comes
+in, rather than waiting for the entire response).</p>
+
+<p>Uses the following typedef:</p>
+
+<pre><code>typedef void(^DidReceiveDataHandler)(NetworkDataTaskOperation *operation,
+                                     NSData *data,
+                                     long long totalBytesExpected,
+                                     long long bytesReceived);
+</code></pre><div class="note"><p><strong>Note:</strong> The <code>totalBytesExpected</code> parameter of this block is provided by the server, and as such, it is not entirely reliable. Also note that if it could not be determined, <code>totalBytesExpected</code> may be reported as -1.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/progressHandler">@property progressHandler</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkDataTaskOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didReceiveResponseHandler" title="didReceiveResponseHandler"></a>
+	<h3 class="subsubtitle method-title">didReceiveResponseHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called by <code>NSURLSessionDataDelegate</code> method <code>URLSession:dataTask:didReceiveResponse:completionHandler:</code>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) DidReceiveResponseHandler didReceiveResponseHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Uses the following typdef:</p>
+
+<pre><code>typedef void(^DidReceiveResponseHandler)(NetworkDataTaskOperation *operation,
+                                         NSURLResponse *response,
+                                         void(^completionHandler)(NSURLSessionResponseDisposition disposition));
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkDataTaskOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/progressHandler" title="progressHandler"></a>
+	<h3 class="subsubtitle method-title">progressHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called by <code>NSURLSessionDataDelegate</code> method <code>URLSession:dataTask:didReceiveData:</code></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) ProgressHandler progressHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this block if you do want the <code>NetworkDataTaskOperation</code> to build a <code>NSData</code> object
+with the entire response, but simply want to be notified of its progress.</p>
+
+<p>Uses the following typedef:</p>
+
+<pre><code>typedef void(^ProgressHandler)(NetworkDataTaskOperation *operation,
+                               long long totalBytesExpected,
+                               long long bytesReceived);
+</code></pre><div class="note"><p><strong>Note:</strong> The <code>totalBytesExpected</code> parameter of this block is provided by the server, and as such, it is not entirely reliable. Also note that if it could not be determined, <code>totalBytesExpected</code> may be reported as -1.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/didReceiveDataHandler">@property didReceiveDataHandler</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkDataTaskOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/willCacheResponseHandler" title="willCacheResponseHandler"></a>
+	<h3 class="subsubtitle method-title">willCacheResponseHandler</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called by <code>NSURLSessionDataDelegate</code> method <code>URLSession:dataTask:willCacheResponse:completionHandler:</code></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) WillCacheResponseHandler willCacheResponseHandler</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Uses the following typedef:</p>
+
+<pre><code>typedef void(^WillCacheResponseHandler)(NetworkDataTaskOperation *operation,
+                                        NSCachedURLResponse *proposedResponse,
+                                        void(^completionHandler)(NSCachedURLResponse *cachedResponse));
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkDataTaskOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 					
@@ -187,12 +517,12 @@ to the operation (if present).</p>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>session</em></dt>
-			<dd><p>The NSURLSession for which the task operation should be created.</p></dd>
+			<dd><p>The <code>NSURLSession</code> for which the task operation should be created.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>request</em></dt>
-			<dd><p>The NSURLRequest for the task operation.</p></dd>
+			<dd><p>The <code>NSURLRequest</code> for the task operation.</p></dd>
 		</dl>
 		
 	</div>
@@ -235,7 +565,7 @@ to the operation (if present).</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Robert M. Ryan. All rights reserved. (Last updated: 2014-06-10)</span><br />
+						<p><span class="copyright">&copy; 2014 Robert M. Ryan. All rights reserved. (Last updated: 2014-06-11)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 858)</a>.</span></p>
 						

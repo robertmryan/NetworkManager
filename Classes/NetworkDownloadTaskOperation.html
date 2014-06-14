@@ -53,7 +53,11 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
+	<option value="//api/name/cancelByProducingResumeData:">&nbsp;&nbsp;&nbsp;&nbsp;- cancelByProducingResumeData:</option>
+	
 	<option value="//api/name/initWithSession:request:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithSession:request:</option>
+	
+	<option value="//api/name/initWithSession:resumeData:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithSession:resumeData:</option>
 	
 	
 	
@@ -72,6 +76,8 @@
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Properties">Properties</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Cancel and resume">Cancel and resume</a></span></li>
 	
 </ul></li>
 
@@ -95,7 +101,11 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancelByProducingResumeData:">cancelByProducingResumeData:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithSession:request:">initWithSession:request:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithSession:resumeData:">initWithSession:resumeData:</a></span></li>
 	
 </ul></li>
 
@@ -176,6 +186,28 @@ interact directly with this class.</p>
 		<span class="tooltip"><p>Block called as data is downloaded and written to the file.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Cancel and resume" name="task_Cancel and resume"></a>
+						<h3 class="subsubtitle task-title">Cancel and resume</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancelByProducingResumeData:">&ndash;&nbsp;cancelByProducingResumeData:</a></code>
+		<span class="tooltip"><p>Cancel operation, producing <code>resumeData</code> if we can.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithSession:resumeData:">&ndash;&nbsp;initWithSession:resumeData:</a></code>
+		<span class="tooltip"><p>Create NetworkdDownloadTaskOperation from resume data.</p></span>
+	</span>
+	
 	
 </li>
 						</ul>
@@ -355,6 +387,52 @@ interact directly with this class.</p>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/cancelByProducingResumeData:" title="cancelByProducingResumeData:"></a>
+	<h3 class="subsubtitle method-title">cancelByProducingResumeData:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancel operation, producing <code>resumeData</code> if we can.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)cancelByProducingResumeData:(void ( ^ ) ( NSData *resumeData ))<em>completionHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionHandler</em></dt>
+			<dd><p>The block that is called, providing any <code>NSData</code> object with the resume data.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkDownloadTaskOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/initWithSession:request:" title="initWithSession:request:"></a>
 	<h3 class="subsubtitle method-title">initWithSession:request:</h3>
 	
@@ -410,6 +488,62 @@ interact directly with this class.</p>
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/initWithSession:resumeData:" title="initWithSession:resumeData:"></a>
+	<h3 class="subsubtitle method-title">initWithSession:resumeData:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create NetworkdDownloadTaskOperation from resume data.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (instancetype)initWithSession:(NSURLSession *)<em>session</em> resumeData:(NSData *)<em>resumeData</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>session</em></dt>
+			<dd><p>The <code>NSURLSession</code> for which the download task operation should be crewated.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>resumeData</em></dt>
+			<dd><p>The <code>resumeData</code> provided by <a href="#//api/name/cancelByProducingResumeData:"><code>cancelByProducingResumeData:</code></a>.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns <code>NetworkDownloadTaskOperation</code> object.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkDownloadTaskOperation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -423,7 +557,7 @@ interact directly with this class.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Robert M. Ryan. All rights reserved. (Last updated: 2014-06-11)</span><br />
+						<p><span class="copyright">&copy; 2014 Robert M. Ryan. All rights reserved. (Last updated: 2014-06-14)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 858)</a>.</span></p>
 						

@@ -76,17 +76,13 @@
 	
 	<option value="//api/name/downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:</option>
 	
-	<option value="//api/name/downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:</option>
+	<option value="//api/name/downloadOperationWithResumeData:didWriteDataHandler:didFinishDownloadingHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- downloadOperationWithResumeData:didWriteDataHandler:didFinishDownloadingHandler:</option>
 	
-	<option value="//api/name/generateBoundaryString">&nbsp;&nbsp;&nbsp;&nbsp;- generateBoundaryString</option>
+	<option value="//api/name/downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:</option>
 	
 	<option value="//api/name/initWithSessionConfiguration:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithSessionConfiguration:</option>
 	
-	<option value="//api/name/mimeTypeForPath:">&nbsp;&nbsp;&nbsp;&nbsp;- mimeTypeForPath:</option>
-	
 	<option value="//api/name/networkQueue">&nbsp;&nbsp;&nbsp;&nbsp;- networkQueue</option>
-	
-	<option value="//api/name/postUploadToURL:parameters:paths:fieldName:completion:">&nbsp;&nbsp;&nbsp;&nbsp;- postUploadToURL:parameters:paths:fieldName:completion:</option>
 	
 	<option value="//api/name/uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:</option>
 	
@@ -119,8 +115,6 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_NetworkTaskOperation factory methods">NetworkTaskOperation factory methods</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_NSOperationQueue utility methods">NSOperationQueue utility methods</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_HTTP request utility methods">HTTP request utility methods</a></span></li>
 	
 </ul></li>
 
@@ -168,17 +162,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:">downloadOperationWithRequest:didWriteDataHandler:didFinishDownloadingHandler:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:">downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadOperationWithResumeData:didWriteDataHandler:didFinishDownloadingHandler:">downloadOperationWithResumeData:didWriteDataHandler:didFinishDownloadingHandler:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/generateBoundaryString">generateBoundaryString</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:">downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithSessionConfiguration:">initWithSessionConfiguration:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mimeTypeForPath:">mimeTypeForPath:</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/networkQueue">networkQueue</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/postUploadToURL:parameters:paths:fieldName:completion:">postUploadToURL:parameters:paths:fieldName:completion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:">uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:</a></span></li>
 	
@@ -398,6 +388,13 @@ downloads, we may lose the operations when the app is killed.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/downloadOperationWithResumeData:didWriteDataHandler:didFinishDownloadingHandler:">&ndash;&nbsp;downloadOperationWithResumeData:didWriteDataHandler:didFinishDownloadingHandler:</a></code>
+		<span class="tooltip"><p>Create download task operation.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:">&ndash;&nbsp;uploadOperationWithRequest:data:didSendBodyDataHandler:didCompleteWithErrorHandler:</a></code>
 		<span class="tooltip"><p>Create upload task operation.</p></span>
 	</span>
@@ -443,35 +440,6 @@ downloads, we may lose the operations when the app is killed.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/addOperation:">&ndash;&nbsp;addOperation:</a></code>
 		<span class="tooltip"><p>Add operation.</p></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
-						<a title="HTTP request utility methods" name="task_HTTP request utility methods"></a>
-						<h3 class="subsubtitle task-title">HTTP request utility methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/postUploadToURL:parameters:paths:fieldName:completion:">&ndash;&nbsp;postUploadToURL:parameters:paths:fieldName:completion:</a></code>
-		<span class="tooltip"><p>Prepare and initiate multipart/form-data request with files</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/mimeTypeForPath:">&ndash;&nbsp;mimeTypeForPath:</a></code>
-		<span class="tooltip"><p>Determine mime type on basis of file extension</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/generateBoundaryString">&ndash;&nbsp;generateBoundaryString</a></code>
-		<span class="tooltip"><p>Generate random boundary string.</p></span>
 	</span>
 	
 	
@@ -626,6 +594,15 @@ in the absence of a UI), you might want to use a background queue.</p>
 	
 	
 	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This uses the following typedef:</p>
+
+<pre><code>typedef void(^DidBecomeInvalidWithError)(NetworkManager *manager,
+                                         NSError *error);
+</code></pre>
+	</div>
+	
 	
 	
 	
@@ -663,6 +640,16 @@ downloads, we may lose the operations when the app is killed.</p>
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This uses the following typedef:</p>
+
+<pre><code>typedef void(^DidCompleteWithError)(NetworkManager *manager,
+                                    NSURLSessionTask *task,
+                                    NSError *error);
+</code></pre>
+	</div>
 	
 	
 	
@@ -702,6 +689,16 @@ downloads, we may lose the operations when the app is killed.</p>
 	
 	
 	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This uses the following typedef:</p>
+
+<pre><code>typedef void(^DidFinishDownloadingToURL)(NetworkManager *manager,
+                                         NSURLSessionDownloadTask *downloadTask,
+                                         NSURL *location);
+</code></pre>
+	</div>
+	
 	
 	
 	
@@ -738,6 +735,15 @@ downloads, we may lose the operations when the app is killed.</p>
 	
 	
 	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This uses the following typedef:</p>
+
+<pre><code>typedef void(^DidReceiveChallenge)(NetworkManager *manager,
+                                   NSURLAuthenticationChallenge *challenge,
+</code></pre>
+	</div>
+	
 	
 	
 	
@@ -773,6 +779,18 @@ downloads, we may lose the operations when the app is killed.</p>
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This uses the following typedef:</p>
+
+<pre><code>typedef BOOL(^URLSessionDidFinishEventsHandler)(NetworkManager *manager);
+</code></pre><div class="note"><p><strong>Note:</strong> If this block calls the completion handler, it should return <code>NO</code>, to inform the default <code>URLSessionDidFinishEvents</code> method
+that it does not need to call the <code>completionHandler</code>. It should also make sure to <code>nil</code> the <code>completionHandler</code> after it calls it.</p>
+
+<p>If this block does not call the completion handler itself, it should return <code>YES</code> to inform
+the default routine that it should call the <code>completionHandler</code> and perform the necessary clean-up.</p></div>
+	</div>
 	
 	
 	
@@ -1112,6 +1130,73 @@ to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQ
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/downloadOperationWithResumeData:didWriteDataHandler:didFinishDownloadingHandler:" title="downloadOperationWithResumeData:didWriteDataHandler:didFinishDownloadingHandler:"></a>
+	<h3 class="subsubtitle method-title">downloadOperationWithResumeData:didWriteDataHandler:didFinishDownloadingHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create download task operation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NetworkDownloadTaskOperation *)downloadOperationWithResumeData:(NSData *)<em>resumeData</em> didWriteDataHandler:(DidWriteDataHandler)<em>didWriteDataHandler</em> didFinishDownloadingHandler:(DidFinishDownloadingHandler)<em>didFinishDownloadingHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>resumeData</em></dt>
+			<dd><p>The <code>NSData</code> from <a href="../Classes/NetworkDownloadTaskOperation.html"><code>NetworkDownloadTaskOperation</code></a> method <code>cancelByProducingResumeData:</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didWriteDataHandler</em></dt>
+			<dd><p>The method that will be called with as the data is being downloaded.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>didFinishDownloadingHandler</em></dt>
+			<dd><p>The block that will be called when the upload is done.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns <code>NetworkDownloadTaskOperation</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="note"><p><strong>Note:</strong> The progress/completion blocks will, by default, be called on the main queue. If you want
+to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQueue"><code>completionQueue</code></a> value.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NetworkManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:" title="downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:"></a>
 	<h3 class="subsubtitle method-title">downloadOperationWithURL:didWriteDataHandler:didFinishDownloadingHandler:</h3>
 	
@@ -1162,52 +1247,6 @@ to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQ
 		<h4 class="method-subtitle">Discussion</h4>
 		<div class="note"><p><strong>Note:</strong> The progress/completion blocks will, by default, be called on the main queue. If you want
 to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQueue"><code>completionQueue</code></a> value.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">NetworkManager.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/generateBoundaryString" title="generateBoundaryString"></a>
-	<h3 class="subsubtitle method-title">generateBoundaryString</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Generate random boundary string.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (NSString *)generateBoundaryString</code></div>
-
-    
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>Random boundary string.</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Every time you call this method, you will receive new random boundary string, so call this method only once for each request.</p>
 	</div>
 	
 	
@@ -1276,57 +1315,6 @@ to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQ
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/mimeTypeForPath:" title="mimeTypeForPath:"></a>
-	<h3 class="subsubtitle method-title">mimeTypeForPath:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Determine mime type on basis of file extension</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (NSString *)mimeTypeForPath:(NSString *)<em>path</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>path</em></dt>
-			<dd><p>The path of the file being uploaded</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><code>NSString</code> of mime representation</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">NetworkManager.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/networkQueue" title="networkQueue"></a>
 	<h3 class="subsubtitle method-title">networkQueue</h3>
 	
@@ -1358,77 +1346,6 @@ to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQ
 		<p>If you want, you can add operations to the NSURLSessionManager-provided operation queue.
 This method is provided in case you want to customize the queue or add operations to it yourself.</p>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">NetworkManager.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/postUploadToURL:parameters:paths:fieldName:completion:" title="postUploadToURL:parameters:paths:fieldName:completion:"></a>
-	<h3 class="subsubtitle method-title">postUploadToURL:parameters:paths:fieldName:completion:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Prepare and initiate multipart/form-data request with files</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (NetworkUploadTaskOperation *)postUploadToURL:(NSURL *)<em>url</em> parameters:(NSDictionary *)<em>parameters</em> paths:(NSArray *)<em>paths</em> fieldName:(NSString *)<em>fieldName</em> completion:(void ( ^ ) ( id responseObject , NSError *error ))<em>completion</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>url</em></dt>
-			<dd><p>URL to use for POST request.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>parameters</em></dt>
-			<dd><p><code>NSDictionary</code> for parameters to add to POST request; may be <code>nil</code> if no additional parameters.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>paths</em></dt>
-			<dd><p><code>NSArray</code> of paths of files to add to request; should be fully qualified file paths.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>fieldName</em></dt>
-			<dd><p><code>NSString</code> of field name to use for files specified in <code>paths</code>.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>completion</em></dt>
-			<dd><p>Block to be invoked when POST request completes (or fails).</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>The operation that has been started.</p>
-	</div>
-	
-	
-	
-	
 	
 	
 	
@@ -1745,7 +1662,7 @@ to use a different GCD queue, specify a non-nil <a href="#//api/name/completionQ
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Robert M. Ryan. All rights reserved. (Last updated: 2014-06-11)</span><br />
+						<p><span class="copyright">&copy; 2014 Robert M. Ryan. All rights reserved. (Last updated: 2014-06-14)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 858)</a>.</span></p>
 						

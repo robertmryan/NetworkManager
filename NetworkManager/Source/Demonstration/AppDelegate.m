@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "NetworkManager.h"
+
+NSString * const kBackgroundIdentifier = @"com.domain.app.backgrounddownloads";
 
 @implementation AppDelegate
 
@@ -41,6 +44,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler
+{
+    // this instantiates my shared background session and saves the completion handler
+    
+    [[NetworkManager backgroundSessionWithIdentifier:kBackgroundIdentifier] setCompletionHandler:completionHandler];
 }
 
 @end

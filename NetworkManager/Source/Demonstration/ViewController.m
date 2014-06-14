@@ -39,6 +39,8 @@
 @property (nonatomic, strong) NetworkManager *networkManager;
 @property (nonatomic, strong) NSMutableArray *requests;
 
+@property (nonatomic, weak) NetworkDownloadTaskOperation *download;
+
 @end
 
 @implementation ViewController
@@ -50,11 +52,72 @@
     self.networkManager = [[NetworkManager alloc] init];
     self.requests = [NSMutableArray array];
 
+//    [self addCancelAndResumeDownload];
     [self addDownloadOperations];
     [self addDataOperations];
 }
 
-/** Download series of images from Metropolitan Museum using `NSURLSessionDownloadTask`.
+/* Test cancelable request
+ */
+- (void)addCancelAndResumeDownload
+{
+    NSURL *url = [NSURL URLWithString:@"http://images.metmuseum.org/CRDImages/ep/original/DP145921.jpg"];
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *path = [documentsPath stringByAppendingPathComponent:[url lastPathComponent]];
+    NSURL *fileURL = [NSURL fileURLWithPath:path];
+
+    NetworkDownloadTaskOperation *operation = [self.networkManager downloadOperationWithURL:url didWriteDataHandler:^(NetworkDownloadTaskOperation *operation, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+        float progress;
+        if (totalBytesExpectedToWrite > 0) {
+            progress = fmodf((float) totalBytesWritten / totalBytesExpectedToWrite, 1.0);
+        } else {
+            progress = fmodf((float) totalBytesWritten / 1e6, 1.0);
+        }
+
+        if (progress > 0.40) {
+            [self.download cancelByProducingResumeData:^(NSData *resumeData) {
+                if (resumeData) {
+                    NSLog(@"successfully canceled with resume data");
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        NetworkDownloadTaskOperation *operation = [self.networkManager downloadOperationWithResumeData:resumeData didWriteDataHandler:nil didFinishDownloadingHandler:^(NetworkDownloadTaskOperation *operation, NSURL *location, NSError *error) {
+                            if (error) {
+                                NSLog(@"error: %@", error);
+                            } else {
+                                NSError *moveError;
+                                if (![[NSFileManager defaultManager] moveItemAtURL:location toURL:fileURL error:&moveError]) {
+                                    NSLog(@"error moving: %@", moveError);
+                                } else {
+                                    NSLog(@"successfully downloaded");
+                                }
+                            }
+                        }];
+                        [self.networkManager addOperation:operation];
+                    });
+                } else {
+                    NSLog(@"no resume data returned");
+                }
+            }];
+        }
+    } didFinishDownloadingHandler:^(NetworkDownloadTaskOperation *operation, NSURL *location, NSError *error) {
+        if (error) {
+            NSLog(@"error in main download: %@", error);
+        } else {
+            NSLog(@"whoops, did not intend to reach this point");
+            NSError *moveError;
+            if (![[NSFileManager defaultManager] moveItemAtURL:location toURL:fileURL error:&moveError]) {
+                NSLog(@"error moving: %@", moveError);
+            } else {
+                NSLog(@"successfully downloaded");
+            }
+        }
+    }];
+
+    self.download = operation;
+
+    [self.networkManager addOperation:self.download];
+}
+
+/* Download series of images from Metropolitan Museum using `NSURLSessionDownloadTask`.
  *
  *  Included one bad URL to test error handling.
  */

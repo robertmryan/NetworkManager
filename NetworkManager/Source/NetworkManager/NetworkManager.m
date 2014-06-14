@@ -8,9 +8,10 @@
 //  http://creativecommons.org/licenses/by-sa/4.0/
 
 #import "NetworkManager.h"
-@import MobileCoreServices;
 
-static NSMutableDictionary *_backgroundSessions = nil;
+NSString * const kNetworkManagerVersion = @"0.1";
+
+static NSMutableDictionary *_backgroundSessions;
 
 @interface NetworkManager ()  <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate, NSURLSessionDownloadDelegate>
 
@@ -51,7 +52,7 @@ static NSMutableDictionary *_backgroundSessions = nil;
     dispatch_once(&onceToken, ^{
         _backgroundSessions = [[NSMutableDictionary alloc] init];
     });
-
+    
     NetworkManager *manager = _backgroundSessions[identifier];
     if (!manager) {
         NSURLSessionConfiguration *configuration;
@@ -147,6 +148,25 @@ static NSMutableDictionary *_backgroundSessions = nil;
     return operation;
 }
 
+- (NetworkDownloadTaskOperation *)downloadOperationWithResumeData:(NSData *)resumeData
+                                              didWriteDataHandler:(DidWriteDataHandler)didWriteDataHandler
+                                      didFinishDownloadingHandler:(DidFinishDownloadingHandler)didFinishDownloadingHandler
+{
+    NSParameterAssert(resumeData);
+
+    NetworkDownloadTaskOperation *operation;
+
+    operation = [[NetworkDownloadTaskOperation alloc] initWithSession:self.session resumeData:resumeData];
+    NSAssert(operation, @"%s: instantiation of NetworkDownloadTaskOperation failed", __FUNCTION__);
+    operation.didFinishDownloadingHandler = didFinishDownloadingHandler;
+    operation.didWriteDataHandler = didWriteDataHandler;
+    operation.completionQueue = self.completionQueue;
+
+    [self.operations setObject:operation forKey:@(operation.task.taskIdentifier)];
+
+    return operation;
+}
+
 - (NetworkUploadTaskOperation *)uploadOperationWithURL:(NSURL *)url
                                                   data:(NSData *)data
                                 didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
@@ -225,7 +245,7 @@ static NSMutableDictionary *_backgroundSessions = nil;
     @synchronized(self) {
         if (!_networkQueue) {
             _networkQueue = [[NSOperationQueue alloc] init];
-            _networkQueue.name = @"NetworkManager.queue";
+            _networkQueue.name = [NSString stringWithFormat:@"%@.NetworkManager.%p", [[NSBundle mainBundle] bundleIdentifier], self];
             if (![self isBackgroundSession])
                 _networkQueue.maxConcurrentOperationCount = 4;
         }
@@ -255,13 +275,11 @@ static NSMutableDictionary *_backgroundSessions = nil;
     if (self.didReceiveChallenge) {
         self.didReceiveChallenge(self, challenge, completionHandler);
     } else {
-        dispatch_sync(self.completionQueue ?: dispatch_get_main_queue(), ^{
-            if (self.credential && challenge.previousFailureCount == 0) {
-                completionHandler(NSURLSessionAuthChallengeUseCredential, self.credential);
-            } else {
-                completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
-            }
-        });
+        if (self.credential && challenge.previousFailureCount == 0) {
+            completionHandler(NSURLSessionAuthChallengeUseCredential, self.credential);
+        } else {
+            completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
+        }
     }
 }
 
@@ -298,8 +316,10 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)removeTaskOperationForTask:(NSURLSessionTask *)task
 {
     NetworkTaskOperation *taskOperation = self.operations[@(task.taskIdentifier)];
-    NSAssert(taskOperation || (self.session.configuration.identifier != nil), @"%s: task operation %lu not found ", __FUNCTION__, (unsigned long)task.taskIdentifier);
 
+    if (!taskOperation)
+        return;
+    
     [self.operations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if (obj == taskOperation) {
             [self.operations removeObjectForKey:key];
@@ -311,7 +331,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
     NetworkTaskOperation *operation = self.operations[@(task.taskIdentifier)];
-    NSAssert(operation || (self.session.configuration.identifier != nil), @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)task.taskIdentifier);
 
     if ([operation respondsToSelector:@selector(URLSession:task:didCompleteWithError:)]) {
         [operation URLSession:session task:task didCompleteWithError:error];
@@ -332,7 +351,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler
 {
     NetworkTaskOperation *operation = self.operations[@(task.taskIdentifier)];
-    NSAssert(operation || (self.session.configuration.identifier != nil), @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)task.taskIdentifier);
 
     // if the operation can handle challenge, then give it one shot, otherwise, we'll take over here
 
@@ -356,7 +374,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didSendBodyData:(int64_t)bytesSent totalBytesSent:(int64_t)totalBytesSent totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend
 {
     NetworkTaskOperation *operation = self.operations[@(task.taskIdentifier)];
-    NSAssert(operation || (self.session.configuration.identifier != nil), @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)task.taskIdentifier);
 
     if ([operation respondsToSelector:@selector(URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:)])
         [operation URLSession:session task:task didSendBodyData:bytesSent totalBytesSent:totalBytesSent totalBytesExpectedToSend:totalBytesExpectedToSend];
@@ -365,7 +382,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task needNewBodyStream:(void (^)(NSInputStream *bodyStream))completionHandler
 {
     NetworkTaskOperation *operation = self.operations[@(task.taskIdentifier)];
-    NSAssert(operation || (self.session.configuration.identifier != nil), @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)task.taskIdentifier);
 
     if ([operation respondsToSelector:@selector(URLSession:task:needNewBodyStream:)])
         [operation URLSession:session task:task needNewBodyStream:completionHandler];
@@ -376,7 +392,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler
 {
     NetworkTaskOperation *operation = self.operations[@(task.taskIdentifier)];
-    NSAssert(operation || (self.session.configuration.identifier != nil), @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)task.taskIdentifier);
 
     if ([operation respondsToSelector:@selector(URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:)])
         [operation URLSession:session task:task willPerformHTTPRedirection:response newRequest:request completionHandler:completionHandler];
@@ -389,7 +404,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
 {
     NetworkDataTaskOperation *operation = self.operations[@(dataTask.taskIdentifier)];
-    NSAssert(operation, @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)dataTask.taskIdentifier);
 
     if ([operation respondsToSelector:@selector(URLSession:dataTask:didReceiveResponse:completionHandler:)])
         [operation URLSession:session dataTask:dataTask didReceiveResponse:response completionHandler:completionHandler];
@@ -400,7 +414,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
 {
     NetworkDataTaskOperation *operation = self.operations[@(dataTask.taskIdentifier)];
-    NSAssert(operation, @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)dataTask.taskIdentifier);
 
     if ([operation respondsToSelector:@selector(URLSession:dataTask:didReceiveData:)])
         [operation URLSession:session dataTask:dataTask didReceiveData:data];
@@ -409,7 +422,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask willCacheResponse:(NSCachedURLResponse *)proposedResponse completionHandler:(void (^)(NSCachedURLResponse *cachedResponse))completionHandler
 {
     NetworkDataTaskOperation *operation = self.operations[@(dataTask.taskIdentifier)];
-    NSAssert(operation, @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)dataTask.taskIdentifier);
 
     if ([operation respondsToSelector:@selector(URLSession:dataTask:willCacheResponse:completionHandler:)])
         [operation URLSession:session dataTask:dataTask willCacheResponse:proposedResponse completionHandler:completionHandler];
@@ -420,7 +432,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask
 {
     NetworkDataTaskOperation *operation = self.operations[@(dataTask.taskIdentifier)];
-    NSAssert(operation, @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)dataTask.taskIdentifier);
 
     if ([operation respondsToSelector:@selector(URLSession:dataTask:didBecomeDownloadTask:)])
         [operation URLSession:session dataTask:dataTask didBecomeDownloadTask:downloadTask];
@@ -431,7 +442,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 {
     NetworkDownloadTaskOperation *operation = self.operations[@(downloadTask.taskIdentifier)];
-    NSAssert(operation || (self.session.configuration.identifier != nil), @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)downloadTask.taskIdentifier);
 
     if ([operation respondsToSelector:@selector(URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:)])
         [operation URLSession:session downloadTask:downloadTask didWriteData:bytesWritten totalBytesWritten:totalBytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
@@ -440,7 +450,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
 {
     NetworkDownloadTaskOperation *operation = self.operations[@(downloadTask.taskIdentifier)];
-    NSAssert(operation || (self.session.configuration.identifier != nil), @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)downloadTask.taskIdentifier);
 
     if ([operation respondsToSelector:@selector(URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:)])
         [operation URLSession:session downloadTask:downloadTask didResumeAtOffset:fileOffset expectedTotalBytes:expectedTotalBytes];
@@ -449,7 +458,6 @@ static NSMutableDictionary *_backgroundSessions = nil;
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
 {
     NetworkDownloadTaskOperation *operation = self.operations[@(downloadTask.taskIdentifier)];
-    NSAssert(operation || (self.session.configuration.identifier != nil), @"%s: Did not find taskIdentifier %lu", __FUNCTION__, (unsigned long)downloadTask.taskIdentifier);
 
     if ([operation respondsToSelector:@selector(URLSession:downloadTask:didFinishDownloadingToURL:)] && operation.didFinishDownloadingHandler) {
         [operation URLSession:session downloadTask:downloadTask didFinishDownloadingToURL:location];
@@ -461,135 +469,5 @@ static NSMutableDictionary *_backgroundSessions = nil;
     }
 }
 
-
-#pragma mark - Utility Methods
-
-- (NSString *)mimeTypeForPath:(NSString *)path
-{
-    // get a mime type for an extension using MobileCoreServices.framework
-
-    CFStringRef extension = (__bridge CFStringRef)[path pathExtension];
-    CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, extension, NULL);
-    assert(UTI != NULL);
-
-    NSString *mimetype = CFBridgingRelease(UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType));
-    assert(mimetype != NULL);
-
-    CFRelease(UTI);
-
-    return mimetype;
-}
-
-- (NSString *)generateBoundaryString
-{
-    // generate boundary string
-    //
-    // adapted from http://developer.apple.com/library/ios/#samplecode/SimpleURLConnections
-
-    CFUUIDRef  uuid;
-    NSString  *uuidStr;
-
-    uuid = CFUUIDCreate(NULL);
-    assert(uuid != NULL);
-
-    uuidStr = CFBridgingRelease(CFUUIDCreateString(NULL, uuid));
-    assert(uuidStr != NULL);
-
-    CFRelease(uuid);
-
-    return [NSString stringWithFormat:@"Boundary-%@", uuidStr];
-}
-
-- (NSData *)createBodyWithBoundary:(NSString *)boundary
-                        parameters:(NSDictionary *)parameters
-                             paths:(NSArray *)paths
-                         fieldName:(NSString *)fieldName
-{
-    NSMutableData *httpBody = [NSMutableData data];
-
-    // add params (all params are strings)
-
-    [parameters enumerateKeysAndObjectsUsingBlock:^(NSString *parameterKey, NSString *parameterValue, BOOL *stop) {
-        [httpBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [httpBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", parameterKey] dataUsingEncoding:NSUTF8StringEncoding]];
-        [httpBody appendData:[[NSString stringWithFormat:@"%@\r\n", parameterValue] dataUsingEncoding:NSUTF8StringEncoding]];
-    }];
-
-    // add image data
-
-    for (NSString *path in paths) {
-        NSString *filename  = [path lastPathComponent];
-        NSData   *data      = [NSData dataWithContentsOfFile:path];
-        NSString *mimetype  = [self mimeTypeForPath:path];
-
-        [httpBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [httpBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", fieldName, filename] dataUsingEncoding:NSUTF8StringEncoding]];
-        [httpBody appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimetype] dataUsingEncoding:NSUTF8StringEncoding]];
-        [httpBody appendData:data];
-        [httpBody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-
-    [httpBody appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-
-    return httpBody;
-}
-
-- (NetworkUploadTaskOperation *)postUploadToURL:(NSURL *)url
-                                     parameters:(NSDictionary *)parameters
-                                          paths:(NSArray *)paths
-                                      fieldName:(NSString *)fieldName
-                                     completion:(void (^)(id responseObject, NSError *error))completion
-{
-    NSString *boundary = [self generateBoundaryString];
-
-    // configure the request
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [request setHTTPShouldHandleCookies:NO];
-    [request setTimeoutInterval:30];
-    [request setHTTPMethod:@"POST"];
-
-    // set content type
-
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-    [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
-
-    // create body
-
-    NSData *httpBody = [self createBodyWithBoundary:boundary parameters:parameters paths:paths fieldName:fieldName];
-
-    // setting the body of the post to the reqeust
-
-    NetworkUploadTaskOperation *operation = [self uploadOperationWithRequest:request data:httpBody didSendBodyDataHandler:nil didCompleteWithErrorHandler:^(NetworkTaskOperation *operation, NSData *data, NSError *error) {
-        NSHTTPURLResponse *response = (NSHTTPURLResponse *) operation.task.response;
-        BOOL isJSON = NO;
-
-        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            for (NSString *headerKey in response.allHeaderFields) {
-                if ([[headerKey lowercaseString] isEqualToString:@"content-type"]) {
-                    if ([[response.allHeaderFields[headerKey] lowercaseString] isEqualToString:@"application/json"])
-                        isJSON = YES;
-                }
-            }
-        }
-
-        if (completion) {
-            if (isJSON) {
-                NSError *parseError = nil;
-                id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-                completion(object, parseError);
-            } else {
-                completion(data, error);
-            }
-        } else if (error) {
-            NSLog(@"%s: %@", __PRETTY_FUNCTION__, error);
-        }
-    }];
-    
-    [self addOperation:operation];
-    
-    return operation;
-}
 
 @end

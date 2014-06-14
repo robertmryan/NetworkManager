@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		833793DE194B5C53001D1AA7 /* NetworkManager+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 833793DD194B5C53001D1AA7 /* NetworkManager+HTTP.m */; };
 		83D551D61947AF93003843B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D551D51947AF93003843B9 /* Foundation.framework */; };
 		83D551D81947AF93003843B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D551D71947AF93003843B9 /* CoreGraphics.framework */; };
 		83D551DA1947AF93003843B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D551D91947AF93003843B9 /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		833793DC194B5C53001D1AA7 /* NetworkManager+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetworkManager+HTTP.h"; sourceTree = "<group>"; };
+		833793DD194B5C53001D1AA7 /* NetworkManager+HTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetworkManager+HTTP.m"; sourceTree = "<group>"; };
 		83D551D21947AF93003843B9 /* NetworkManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83D551D51947AF93003843B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		83D551D71947AF93003843B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -197,6 +200,8 @@
 			children = (
 				83D552171947B02D003843B9 /* NetworkManager.h */,
 				83D552181947B02D003843B9 /* NetworkManager.m */,
+				833793DC194B5C53001D1AA7 /* NetworkManager+HTTP.h */,
+				833793DD194B5C53001D1AA7 /* NetworkManager+HTTP.m */,
 				83D552191947B02D003843B9 /* NetworkTaskOperation.h */,
 				83D5521A1947B02D003843B9 /* NetworkTaskOperation.m */,
 				83D552131947B02D003843B9 /* NetworkDataTaskOperation.h */,
@@ -313,6 +318,7 @@
 				83D5521E1947B02D003843B9 /* NetworkRequestProgressCell.m in Sources */,
 				83D5521F1947B02D003843B9 /* ViewController.m in Sources */,
 				83D552201947B02D003843B9 /* NetworkDataTaskOperation.m in Sources */,
+				833793DE194B5C53001D1AA7 /* NetworkManager+HTTP.m in Sources */,
 				83D551E21947AF94003843B9 /* main.m in Sources */,
 				83D552241947B02D003843B9 /* NetworkUploadTaskOperation.m in Sources */,
 				83D552231947B02D003843B9 /* NetworkTaskOperation.m in Sources */,

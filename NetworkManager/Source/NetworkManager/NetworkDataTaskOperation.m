@@ -61,9 +61,6 @@
             self.bytesReceived = 0ll;
 
             if (statusCode == 200) {
-                if (!self.didReceiveDataHandler) {
-                    self.responseData = [NSMutableData data];
-                }
                 completionHandler(NSURLSessionResponseAllow);
             } else {
                 completionHandler(NSURLSessionResponseCancel);
@@ -87,7 +84,11 @@
             self.didReceiveDataHandler(self, data, self.totalBytesExpected, self.bytesReceived);
         });
     } else {
-        [self.responseData appendData:data];
+        if (!self.responseData) {
+            self.responseData = [NSMutableData dataWithData:data];
+        } else {
+            [self.responseData appendData:data];
+        }
     }
 
     if (self.progressHandler) {

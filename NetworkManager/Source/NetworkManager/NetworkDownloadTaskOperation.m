@@ -23,13 +23,36 @@
     return self;
 }
 
+- (instancetype)initWithSession:(NSURLSession *)session
+                     resumeData:(NSData *)resumeData
+{
+    NSParameterAssert(resumeData);
+
+    self = [super init];
+    if (self) {
+        self.task = [session downloadTaskWithResumeData:resumeData];
+    }
+    return self;
+}
+
+- (void)cancelByProducingResumeData:(void (^)(NSData *resumeData))completionHandler
+{
+    if (self.task.state == NSURLSessionTaskStateRunning) {
+        [(NSURLSessionDownloadTask *)self.task cancelByProducingResumeData:^(NSData *resumeData) {
+            completionHandler(resumeData);
+        }];
+    } else {
+        completionHandler(nil);
+    }
+}
+
 #pragma mark - NSURLSessionTaskDelegate
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
     if (self.didFinishDownloadingHandler) {
         if ([task.response isKindOfClass:[NSHTTPURLResponse class]]) {
-            int statusCode = [(NSHTTPURLResponse *)task.response statusCode];
+            NSInteger statusCode = [(NSHTTPURLResponse *)task.response statusCode];
             if (statusCode != 200 && error == nil)
                 error = [NSError errorWithDomain:NSStringFromClass([self class]) code:statusCode userInfo:@{@"statusCode": @(statusCode), @"response": task.response}];
         }

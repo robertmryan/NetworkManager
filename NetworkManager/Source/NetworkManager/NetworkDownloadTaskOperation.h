@@ -68,4 +68,26 @@ typedef void(^DidWriteDataHandler)(NetworkDownloadTaskOperation *operation,
  */
 @property (nonatomic, copy) DidWriteDataHandler         didWriteDataHandler;
 
+
+/// -----------------------
+/// @name Cancel and resume
+/// -----------------------
+
+/** Cancel operation, producing `resumeData` if we can.
+ *
+ * @param completionHandler The block that is called, providing any `NSData` object with the resume data.
+ */
+- (void)cancelByProducingResumeData:(void (^)(NSData *resumeData))completionHandler;
+
+/** Create NetworkdDownloadTaskOperation from resume data.
+ *
+ * @param session    The `NSURLSession` for which the download task operation should be crewated.
+ * @param resumeData The `resumeData` provided by `<cancelByProducingResumeData:>`.
+ *
+ * @return           Returns `NetworkDownloadTaskOperation` object.
+ */
+- (instancetype)initWithSession:(NSURLSession *)session
+                     resumeData:(NSData *)resumeData;
+
+
 @end

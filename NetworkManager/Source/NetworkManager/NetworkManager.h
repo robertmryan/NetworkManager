@@ -12,6 +12,8 @@
 #import "NetworkDownloadTaskOperation.h"
 #import "NetworkUploadTaskOperation.h"
 
+extern NSString * const kNetworkManagerVersion;
+
 @class NetworkManager;
 
 typedef BOOL(^URLSessionDidFinishEventsHandler)(NetworkManager *manager);
@@ -27,12 +29,8 @@ typedef void(^DidFinishDownloadingToURL)(NetworkManager *manager,
                                          NSURLSessionDownloadTask *downloadTask,
                                          NSURL *location);
 
-typedef void(^DidFinishDownloadingToURL)(NetworkManager *manager,
-                                         NSURLSessionDownloadTask *downloadTask,
-                                         NSURL *location);
-
 typedef void(^DidCompleteWithError)(NetworkManager *manager,
-                                    NSURLSessionTask *downloadTask,
+                                    NSURLSessionTask *task,
                                     NSError *error);
 
 /** Network manager
@@ -85,26 +83,62 @@ achieves task-based delegate calls.
 @property (nonatomic, copy) void (^completionHandler)(void);
 
 /** The block that will be called by `URLSessionDidFinishEventsForBackgroundURLSession:`.
+ 
+ This uses the following typedef:
+ 
+    typedef BOOL(^URLSessionDidFinishEventsHandler)(NetworkManager *manager);
+
+ @note If this block calls the completion handler, it should return `NO`, to inform the default `URLSessionDidFinishEvents` method
+ that it does not need to call the `completionHandler`. It should also make sure to `nil` the `completionHandler` after it calls it.
+ 
+ If this block does not call the completion handler itself, it should return `YES` to inform
+ the default routine that it should call the `completionHandler` and perform the necessary clean-up.
  */
 @property (nonatomic, copy) URLSessionDidFinishEventsHandler urlSessionDidFinishEventsHandler;
 
 /** The block that will be called by `URLSession:didReceiveChallenge:completionHandler:`.
+ 
+ This uses the following typedef:
+ 
+    typedef void(^DidReceiveChallenge)(NetworkManager *manager,
+                                       NSURLAuthenticationChallenge *challenge,
+
  */
 @property (nonatomic, copy) DidReceiveChallenge didReceiveChallenge;
 
 /** The block that will be called by `URLSession:didBecomeInvalidWithError:`.
+ 
+ This uses the following typedef:
+ 
+    typedef void(^DidBecomeInvalidWithError)(NetworkManager *manager,
+                                             NSError *error);
+
  */
 @property (nonatomic, copy) DidBecomeInvalidWithError didBecomeInvalidWithError;
 
 /** The block that will be called by `URLSession:downloadTask:didFinishDownloadingToURL:`.
- *  Generally we keep the task methods at the task operation class level, but for background
- *  downloads, we may lose the operations when the app is killed.
+ Generally we keep the task methods at the task operation class level, but for background
+ downloads, we may lose the operations when the app is killed.
+ 
+ This uses the following typedef:
+ 
+    typedef void(^DidFinishDownloadingToURL)(NetworkManager *manager,
+                                             NSURLSessionDownloadTask *downloadTask,
+                                             NSURL *location);
+
  */
 @property (nonatomic, copy) DidFinishDownloadingToURL didFinishDownloadingToURL;
 
 /** The block that will be called by `URLSession:task:didCompleteWithError:`.
- *  Generally we keep the task methods at the task operation class level, but for background
- *  downloads, we may lose the operations when the app is killed.
+ Generally we keep the task methods at the task operation class level, but for background
+ downloads, we may lose the operations when the app is killed.
+ 
+ This uses the following typedef:
+ 
+    typedef void(^DidCompleteWithError)(NetworkManager *manager,
+                                        NSURLSessionTask *task,
+                                        NSError *error);
+
  */
 @property (nonatomic, copy) DidCompleteWithError didCompleteWithError;
 
@@ -215,6 +249,22 @@ achieves task-based delegate calls.
                                        didWriteDataHandler:(DidWriteDataHandler)didWriteDataHandler
                                didFinishDownloadingHandler:(DidFinishDownloadingHandler)didFinishDownloadingHandler;
 
+/** Create download task operation.
+ *
+ * @param resumeData The `NSData` from `<NetworkDownloadTaskOperation>` method `cancelByProducingResumeData:`.
+ * @param didWriteDataHandler The method that will be called with as the data is being downloaded.
+ * @param didFinishDownloadingHandler The block that will be called when the upload is done.
+ *
+ * @return Returns `NetworkDownloadTaskOperation`.
+ *
+ * @note The progress/completion blocks will, by default, be called on the main queue. If you want
+ *       to use a different GCD queue, specify a non-nil `<completionQueue>` value.
+ */
+
+- (NetworkDownloadTaskOperation *)downloadOperationWithResumeData:(NSData *)resumeData
+                                              didWriteDataHandler:(DidWriteDataHandler)didWriteDataHandler
+                                      didFinishDownloadingHandler:(DidFinishDownloadingHandler)didFinishDownloadingHandler;
+
 /** Create upload task operation.
  *
  * @param request The `NSURLRequest`.
@@ -309,41 +359,5 @@ achieves task-based delegate calls.
  */
 
 - (void)addOperation:(NSOperation *)operation;
-
-/// -----------------------------------------------
-/// @name HTTP request utility methods
-/// -----------------------------------------------
-
-/** Prepare and initiate multipart/form-data request with files
- *
- * @param url          URL to use for POST request.
- * @param parameters   `NSDictionary` for parameters to add to POST request; may be `nil` if no additional parameters.
- * @param paths        `NSArray` of paths of files to add to request; should be fully qualified file paths.
- * @param fieldName    `NSString` of field name to use for files specified in `paths`.
- * @param completion   Block to be invoked when POST request completes (or fails).
- *
- * @return             The operation that has been started.
- */
-- (NetworkUploadTaskOperation *)postUploadToURL:(NSURL *)url
-                                     parameters:(NSDictionary *)parameters
-                                          paths:(NSArray *)paths
-                                      fieldName:(NSString *)fieldName
-                                     completion:(void (^)(id responseObject, NSError *error))completion;
-
-/** Determine mime type on basis of file extension
- *
- * @param  path        The path of the file being uploaded
- *
- * @return             `NSString` of mime representation
- */
-- (NSString *)mimeTypeForPath:(NSString *)path;
-
-/** Generate random boundary string.
- *
- * Every time you call this method, you will receive new random boundary string, so call this method only once for each request.
- *
- * @return Random boundary string.
- */
-- (NSString *)generateBoundaryString;
 
 @end

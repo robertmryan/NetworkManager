@@ -32,6 +32,18 @@
                                       fieldName:(NSString *)fieldName
                                      completion:(void (^)(id responseObject, NSError *error))completion;
 
+/** Prepare and initiate application/x-www-form-urlencoded request
+ *
+ * @param url          URL to use for POST request.
+ * @param parameters   `NSDictionary` for parameters to add to POST request; may be `nil` if no additional parameters. This accepts `NSString`, `NSNumber`, `NSDate`, and `NSData` objects. If the object is `NSData`, it simply converts it to a UTF8 string. If `NSDate`, this creates RFC 3339 date string (with milliseconds).
+ * @param completion   Block to be invoked when POST request completes (or fails).
+ *
+ * @return             The operation that has been started.
+ */
+- (NetworkDataTaskOperation *)post:(NSURL *)url
+                        parameters:(NSDictionary *)parameters
+                        completion:(void (^)(id responseObject, NSError *error))completion;
+
 /** Determine mime type on basis of file extension
  *
  * @param  path        The path of the file being uploaded

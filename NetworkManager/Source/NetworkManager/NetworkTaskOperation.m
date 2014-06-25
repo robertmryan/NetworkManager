@@ -13,8 +13,8 @@
 
 @interface NetworkTaskOperation ()
 
-@property (nonatomic, getter = isFinished)  BOOL finished;
-@property (nonatomic, getter = isExecuting) BOOL executing;
+@property (nonatomic, readwrite, getter = isFinished)  BOOL finished;
+@property (nonatomic, readwrite, getter = isExecuting) BOOL executing;
 
 @end
 

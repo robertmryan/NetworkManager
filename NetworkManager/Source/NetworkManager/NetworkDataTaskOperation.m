@@ -35,10 +35,10 @@
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
-    if (self.didCompleteWithErrorHandler) {
+    if (self.didCompleteWithDataErrorHandler) {
         dispatch_sync(self.completionQueue ?: dispatch_get_main_queue(), ^{
-            self.didCompleteWithErrorHandler(self, self.responseData, self.error ?: error);
-            self.didCompleteWithErrorHandler = nil;
+            self.didCompleteWithDataErrorHandler(self, self.responseData, self.error ?: error);
+            self.didCompleteWithDataErrorHandler = nil;
             self.responseData = nil;
         });
     }
@@ -64,7 +64,7 @@
                 completionHandler(NSURLSessionResponseAllow);
             } else {
                 completionHandler(NSURLSessionResponseCancel);
-                if (self.didCompleteWithErrorHandler) {
+                if (self.didCompleteWithDataErrorHandler) {
                     self.error = [NSError errorWithDomain:NSStringFromClass([self class]) code:statusCode userInfo:@{@"statusCode": @(statusCode), @"response": dataTask.response}];
                 }
             }

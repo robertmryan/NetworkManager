@@ -167,7 +167,7 @@
 
     // setting the body of the post to the request
 
-    NetworkUploadTaskOperation *operation = [self uploadOperationWithRequest:request data:httpBody didSendBodyDataHandler:nil didCompleteWithErrorHandler:^(NetworkTaskOperation *operation, NSData *data, NSError *error) {
+    NetworkUploadTaskOperation *operation = [self uploadOperationWithRequest:request data:httpBody didSendBodyDataHandler:nil didCompleteWithDataErrorHandler:^(NetworkTaskOperation *operation, NSData *data, NSError *error) {
         NSHTTPURLResponse *response = (NSHTTPURLResponse *) operation.task.response;
         BOOL isJSON = NO;
 

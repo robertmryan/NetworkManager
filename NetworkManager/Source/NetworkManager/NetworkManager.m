@@ -84,18 +84,18 @@ static NSMutableDictionary *_backgroundSessions;
 
 - (NetworkDataTaskOperation *)dataOperationWithURL:(NSURL *)url
                                    progressHandler:(ProgressHandler)progressHandler
-                                 completionHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler;
+                                 completionHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler;
 {
     NSParameterAssert(url);
 
     return [self dataOperationWithRequest:[NSURLRequest requestWithURL:url]
                           progressHandler:progressHandler
-                        completionHandler:didCompleteWithErrorHandler];
+                        completionHandler:didCompleteWithDataErrorHandler];
 }
 
 - (NetworkDataTaskOperation *)dataOperationWithRequest:(NSURLRequest *)request
                                        progressHandler:(ProgressHandler)progressHandler
-                                     completionHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler;
+                                     completionHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler;
 {
     NSParameterAssert(request);
 
@@ -104,7 +104,7 @@ static NSMutableDictionary *_backgroundSessions;
     operation = [[NetworkDataTaskOperation alloc] initWithSession:self.session request:request];
     NSAssert(operation, @"%s: instantiation of NetworkDataTaskOperation failed", __FUNCTION__);
     operation.progressHandler = progressHandler;
-    operation.didCompleteWithErrorHandler = didCompleteWithErrorHandler;
+    operation.didCompleteWithDataErrorHandler = didCompleteWithDataErrorHandler;
     operation.completionQueue = self.completionQueue;
 
     [self.operations setObject:operation forKey:@(operation.task.taskIdentifier)];
@@ -170,7 +170,7 @@ static NSMutableDictionary *_backgroundSessions;
 - (NetworkUploadTaskOperation *)uploadOperationWithURL:(NSURL *)url
                                                   data:(NSData *)data
                                 didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                           didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler
+                           didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler
 {
     NSParameterAssert(url);
 
@@ -179,7 +179,7 @@ static NSMutableDictionary *_backgroundSessions;
     operation = [self uploadOperationWithRequest:[NSURLRequest requestWithURL:url]
                                             data:data
                           didSendBodyDataHandler:didSendBodyDataHandler
-                     didCompleteWithErrorHandler:didCompleteWithErrorHandler];
+                 didCompleteWithDataErrorHandler:didCompleteWithDataErrorHandler];
     operation.completionQueue = self.completionQueue;
 
     return operation;
@@ -188,7 +188,7 @@ static NSMutableDictionary *_backgroundSessions;
 - (NetworkUploadTaskOperation *)uploadOperationWithRequest:(NSURLRequest *)request
                                                       data:(NSData *)data
                                     didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                               didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler
+                               didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler
 {
     NSParameterAssert(request);
 
@@ -196,7 +196,7 @@ static NSMutableDictionary *_backgroundSessions;
 
     operation = [[NetworkUploadTaskOperation alloc] initWithSession:self.session request:request data:data];
     NSAssert(operation, @"%s: instantiation of NetworkUploadTaskOperation failed", __FUNCTION__);
-    operation.didCompleteWithErrorHandler = didCompleteWithErrorHandler;
+    operation.didCompleteWithDataErrorHandler = didCompleteWithDataErrorHandler;
     operation.didSendBodyDataHandler = didSendBodyDataHandler;
     operation.completionQueue = self.completionQueue;
 
@@ -208,20 +208,20 @@ static NSMutableDictionary *_backgroundSessions;
 - (NetworkUploadTaskOperation *)uploadOperationWithURL:(NSURL *)url
                                                fileURL:(NSURL *)fileURL
                                 didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                           didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler
+                           didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler
 {
     NSParameterAssert(url);
 
     return [self uploadOperationWithRequest:[NSURLRequest requestWithURL:url]
                                     fileURL:fileURL
                      didSendBodyDataHandler:didSendBodyDataHandler
-                didCompleteWithErrorHandler:didCompleteWithErrorHandler];
+            didCompleteWithDataErrorHandler:didCompleteWithDataErrorHandler];
 }
 
 - (NetworkUploadTaskOperation *)uploadOperationWithRequest:(NSURLRequest *)request
                                                    fileURL:(NSURL *)url
                                     didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                               didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler
+                           didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler
 {
     NSParameterAssert(request);
 
@@ -229,7 +229,7 @@ static NSMutableDictionary *_backgroundSessions;
 
     operation = [[NetworkUploadTaskOperation alloc] initWithSession:self.session request:request fromFile:url];
     NSAssert(operation, @"%s: instantiation of NetworkUploadTaskOperation failed", __FUNCTION__);
-    operation.didCompleteWithErrorHandler = didCompleteWithErrorHandler;
+    operation.didCompleteWithDataErrorHandler = didCompleteWithDataErrorHandler;
     operation.didSendBodyDataHandler = didSendBodyDataHandler;
     operation.completionQueue = self.completionQueue;
 

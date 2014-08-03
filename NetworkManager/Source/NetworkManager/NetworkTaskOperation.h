@@ -11,9 +11,9 @@
 
 @class NetworkTaskOperation;
 
-typedef void(^DidCompleteWithErrorHandler)(NetworkTaskOperation *operation,
-                                           NSData *data,
-                                           NSError *error);
+typedef void(^DidCompleteWithDataErrorHandler)(NetworkTaskOperation *operation,
+                                               NSData *data,
+                                               NSError *error);
 
 typedef void(^DidReceiveChallengeHandler)(NetworkTaskOperation *operation,
                                           NSURLAuthenticationChallenge *challenge,
@@ -56,12 +56,12 @@ typedef void(^WillPerformHTTPRedirectionHandler)(NetworkTaskOperation *operation
  
  Uses the following typdef:
  
-    typedef void(^DidCompleteWithErrorHandler)(NetworkTaskOperation *operation,
-                                               NSData *data,
-                                               NSError *error);
+    typedef void(^DidCompleteWithDataErrorHandler)(NetworkTaskOperation *operation,
+                                                   NSData *data,
+                                                   NSError *error);
 */
 
-@property (nonatomic, copy)   DidCompleteWithErrorHandler       didCompleteWithErrorHandler;
+@property (nonatomic, copy)   DidCompleteWithDataErrorHandler       didCompleteWithDataErrorHandler;
 
 /** Did receive challenge handler block
  

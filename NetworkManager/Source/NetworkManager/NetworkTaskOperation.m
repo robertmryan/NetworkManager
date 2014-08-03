@@ -89,10 +89,10 @@
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
-    if (self.didCompleteWithErrorHandler) {
+    if (self.didCompleteWithDataErrorHandler) {
         dispatch_sync(self.completionQueue ?: dispatch_get_main_queue(), ^{
-            self.didCompleteWithErrorHandler(self, nil, error);
-            self.didCompleteWithErrorHandler = nil;
+            self.didCompleteWithDataErrorHandler(self, nil, error);
+            self.didCompleteWithDataErrorHandler = nil;
         });
     }
 

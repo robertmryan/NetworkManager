@@ -183,7 +183,7 @@ achieves task-based delegate calls.
  *
  * @param request The `NSURLRequest`.
  * @param progressHandler The method that will be called with as the data is being downloaded.
- * @param didCompleteWithErrorHandler The block that will be called when the upload is done.
+ * @param didCompleteWithDataErrorHandler The block that will be called when the upload is done.
  *
  * @return Returns `NetworkDataTaskOperation`.
  *
@@ -196,13 +196,13 @@ achieves task-based delegate calls.
  */
 - (NetworkDataTaskOperation *)dataOperationWithRequest:(NSURLRequest *)request
                                        progressHandler:(ProgressHandler)progressHandler
-                                     completionHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler;
+                                     completionHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler;
 
 /** Create data task operation.
  *
  * @param url The NSURL.
  * @param progressHandler The method that will be called with as the data is being downloaded.
- * @param didCompleteWithErrorHandler The block that will be called when the upload is done.
+ * @param didCompleteWithDataErrorHandler The block that will be called when the upload is done.
  *
  * @return Returns `NetworkDataTaskOperation`.
  *
@@ -215,7 +215,7 @@ achieves task-based delegate calls.
  */
 - (NetworkDataTaskOperation *)dataOperationWithURL:(NSURL *)url
                                    progressHandler:(ProgressHandler)progressHandler
-                                 completionHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler;
+                                 completionHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler;
 
 /** Create download task operation.
  *
@@ -270,7 +270,7 @@ achieves task-based delegate calls.
  * @param request The `NSURLRequest`.
  * @param data    The body of the request
  * @param didSendBodyDataHandler The method that will be called with periodic updates while data is being uploaded
- * @param didCompleteWithErrorHandler The block that will be called when the upload is done.
+ * @param didCompleteWithDataErrorHandler The block that will be called when the upload is done.
  *
  * @return Returns `NetworkUploadTaskOperation`.
  *
@@ -281,14 +281,14 @@ achieves task-based delegate calls.
 - (NetworkUploadTaskOperation *)uploadOperationWithRequest:(NSURLRequest *)request
                                                       data:(NSData *)data
                                     didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                               didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler;
+                           didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler;
 
 /** Create upload task operation.
  *
  * @param url  The NSURL.
  * @param data The body of the request
  * @param didSendBodyDataHandler The method that will be called with periodic updates while data is being uploaded
- * @param didCompleteWithErrorHandler The block that will be called when the upload is done.
+ * @param didCompleteWithDataErrorHandler The block that will be called when the upload is done.
  *
  * @return Returns `NetworkUploadTaskOperation`.
  *
@@ -299,14 +299,14 @@ achieves task-based delegate calls.
 - (NetworkUploadTaskOperation *)uploadOperationWithURL:(NSURL *)url
                                                   data:(NSData *)data
                                 didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                           didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler;
+                       didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler;
 
 /** Create upload task operation.
  *
  * @param request The `NSURLRequest`.
  * @param fileURL    The URL of the file to be uploaded
  * @param didSendBodyDataHandler The method that will be called with periodic updates while data is being uploaded
- * @param didCompleteWithErrorHandler The block that will be called when the upload is done.
+ * @param didCompleteWithDataErrorHandler The block that will be called when the upload is done.
  *
  * @return Returns `NetworkUploadTaskOperation`.
  *
@@ -317,14 +317,14 @@ achieves task-based delegate calls.
 - (NetworkUploadTaskOperation *)uploadOperationWithRequest:(NSURLRequest *)request
                                                    fileURL:(NSURL *)fileURL
                                     didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                               didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler;
+                           didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler;
 
 /** Create upload task operation.
  *
  * @param url   The NSURL.
  * @param fileURL  The URL of the file to be uploaded
  * @param didSendBodyDataHandler The method that will be called with periodic updates while data is being uploaded
- * @param didCompleteWithErrorHandler The block that will be called when the upload is done.
+ * @param didCompleteWithDataErrorHandler The block that will be called when the upload is done.
  *
  * @return Returns `NetworkUploadTaskOperation`.
  *
@@ -335,7 +335,7 @@ achieves task-based delegate calls.
 - (NetworkUploadTaskOperation *)uploadOperationWithURL:(NSURL *)url
                                                fileURL:(NSURL *)fileURL
                                 didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                           didCompleteWithErrorHandler:(DidCompleteWithErrorHandler)didCompleteWithErrorHandler;
+                       didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler;
 
 /// -----------------------------------------------
 /// @name NSOperationQueue utility methods

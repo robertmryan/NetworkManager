@@ -35,15 +35,8 @@
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
-    if (self.didCompleteWithDataErrorHandler) {
-        dispatch_sync(self.completionQueue ?: dispatch_get_main_queue(), ^{
-            self.didCompleteWithDataErrorHandler(self, self.responseData, self.error ?: error);
-            self.didCompleteWithDataErrorHandler = nil;
-            self.responseData = nil;
-        });
-    }
-
-    [self completeOperation];
+    [super URLSession:session task:task didCompleteWithError:error];
+    self.responseData = nil;
 }
 
 #pragma mark - NSURLSessionDataDelegate

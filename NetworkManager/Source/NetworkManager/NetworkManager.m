@@ -332,13 +332,12 @@ static NSMutableDictionary *_backgroundSessions;
 {
     NetworkTaskOperation *operation = self.operations[@(task.taskIdentifier)];
 
-    if ([operation respondsToSelector:@selector(URLSession:task:didCompleteWithError:)]) {
+    if ([operation respondsToSelector:@selector(URLSession:task:didCompleteWithError:)] && operation.didCompleteWithDataErrorHandler) {
         [operation URLSession:session task:task didCompleteWithError:error];
     } else {
         if (self.didCompleteWithError) {
             dispatch_sync(self.completionQueue ?: dispatch_get_main_queue(), ^{
                 self.didCompleteWithError(self, task, error);
-                self.didCompleteWithError = nil;
             });
         }
 
@@ -464,7 +463,6 @@ static NSMutableDictionary *_backgroundSessions;
     } else if (self.didFinishDownloadingToURL) {
         dispatch_sync(self.completionQueue ?: dispatch_get_main_queue(), ^{
             self.didFinishDownloadingToURL(self, downloadTask, location);
-            self.didFinishDownloadingToURL = nil;
         });
     }
 }

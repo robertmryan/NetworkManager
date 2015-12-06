@@ -22,8 +22,7 @@
 @implementation NetworkDataTaskOperation
 
 - (instancetype)initWithSession:(NSURLSession *)session
-                        request:(NSURLRequest *)request
-{
+                        request:(NSURLRequest *)request {
     self = [super init];
     if (self) {
         self.task = [session dataTaskWithRequest:request];
@@ -33,8 +32,7 @@
 
 #pragma mark - NSURLSessionTaskDelegate
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
-{
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
     if (self.didCompleteWithDataErrorHandler) {
         dispatch_sync(self.completionQueue ?: dispatch_get_main_queue(), ^{
             self.didCompleteWithDataErrorHandler(self, self.responseData, error);
@@ -47,8 +45,7 @@
 
 #pragma mark - NSURLSessionDataDelegate
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
-{
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
     if (self.didReceiveResponseHandler) {
         dispatch_sync(self.completionQueue ?: dispatch_get_main_queue(), ^{
             self.didReceiveResponseHandler(self, response, completionHandler);
@@ -74,8 +71,7 @@
     }
 }
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
-{
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
     self.bytesReceived += [data length];
 
     if (self.didReceiveDataHandler) {
@@ -97,8 +93,7 @@
     }
 }
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask willCacheResponse:(NSCachedURLResponse *)proposedResponse completionHandler:(void (^)(NSCachedURLResponse *cachedResponse))completionHandler
-{
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask willCacheResponse:(NSCachedURLResponse *)proposedResponse completionHandler:(void (^)(NSCachedURLResponse *cachedResponse))completionHandler {
     if (self.willCacheResponseHandler) {
         dispatch_sync(self.completionQueue ?: dispatch_get_main_queue(), ^{
             self.willCacheResponseHandler(self, proposedResponse, completionHandler);
@@ -108,8 +103,7 @@
     }
 }
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask
-{
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
     if (self.didBecomeDownloadTaskHandler) {
         dispatch_sync(self.completionQueue ?: dispatch_get_main_queue(), ^{
             self.didBecomeDownloadTaskHandler(self, downloadTask);

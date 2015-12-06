@@ -16,8 +16,7 @@
 
 @implementation NetworkManager (HTTP)
 
-- (NSString *)mimeTypeForPath:(NSString *)path
-{
+- (NSString *)mimeTypeForPath:(NSString *)path {
     // get a mime type for an extension using MobileCoreServices.framework
 
     CFStringRef extension = (__bridge CFStringRef)[path pathExtension];
@@ -32,8 +31,7 @@
     return mimetype;
 }
 
-- (NSString *)generateBoundaryString
-{
+- (NSString *)generateBoundaryString {
     // generate boundary string
     //
     // adapted from http://developer.apple.com/library/ios/#samplecode/SimpleURLConnections
@@ -54,8 +52,7 @@
 
 // see https://developer.apple.com/library/ios/qa/qa1480/_index.html
 
-- (NSString *)rfc3339DateString:(NSDate *)date
-{
+- (NSString *)rfc3339DateString:(NSDate *)date {
     NSDateFormatter *formatter = nil;
 
     static dispatch_once_t onceToken;
@@ -70,8 +67,7 @@
     return [formatter stringFromDate:date];
 }
 
-- (NSString *)stringRepresentation:(id)value
-{
+- (NSString *)stringRepresentation:(id)value {
     NSString *string;
 
     if ([value isKindOfClass:[NSData class]]) {
@@ -92,8 +88,7 @@
 - (NSData *)createMultipartBodyWithBoundary:(NSString *)boundary
                                  parameters:(NSDictionary *)parameters
                                       paths:(NSArray *)paths
-                                  fieldName:(NSString *)fieldName
-{
+                                  fieldName:(NSString *)fieldName {
     NSMutableData *httpBody = [NSMutableData data];
 
     // add params (all params are strings)
@@ -125,8 +120,7 @@
     return httpBody;
 }
 
-- (NSData *)createFormUrlEncodedBodyUsingParameters:(NSDictionary *)parameters
-{
+- (NSData *)createFormUrlEncodedBodyUsingParameters:(NSDictionary *)parameters {
     NSMutableArray *paramArray = [NSMutableArray array];
 
     // add params (all params are strings)
@@ -146,8 +140,7 @@
                                      parameters:(NSDictionary *)parameters
                                           paths:(NSArray *)paths
                                       fieldName:(NSString *)fieldName
-                                     completion:(void (^)(id responseObject, NSError *error))completion
-{
+                                     completion:(void (^)(id responseObject, NSError *error))completion {
     NSString *boundary = [self generateBoundaryString];
 
     // configure the request
@@ -200,8 +193,7 @@
 
 - (NetworkDataTaskOperation *)post:(NSURL *)url
                         parameters:(NSDictionary *)parameters
-                        completion:(void (^)(id responseObject, NSError *error))completion
-{
+                        completion:(void (^)(id responseObject, NSError *error))completion {
     // configure the request
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -246,8 +238,7 @@
     return operation;
 }
 
-- (NSString *)percentEscapeString:(NSString *)string
-{
+- (NSString *)percentEscapeString:(NSString *)string {
     return CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                      (CFStringRef)string,
                                                                      NULL,

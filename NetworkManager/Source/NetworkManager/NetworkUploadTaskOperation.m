@@ -13,8 +13,7 @@
 
 - (instancetype)initWithSession:(NSURLSession *)session
                         request:(NSURLRequest *)request
-                           data:(NSData *)data
-{
+                           data:(NSData *)data {
     self = [super init];
     if (self) {
         self.task = [session uploadTaskWithRequest:request fromData:data];
@@ -24,8 +23,7 @@
 
 - (instancetype)initWithSession:(NSURLSession *)session
                         request:(NSURLRequest *)request
-                       fromFile:(NSURL *)url
-{
+                       fromFile:(NSURL *)url {
     self = [super init];
     if (self) {
         self.task = [session uploadTaskWithRequest:request fromFile:url];

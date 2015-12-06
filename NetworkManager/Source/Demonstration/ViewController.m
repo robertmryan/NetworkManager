@@ -19,8 +19,7 @@
 
 @implementation Request
 
-- (instancetype)initWithURLString:(NSString *)urlString
-{
+- (instancetype)initWithURLString:(NSString *)urlString {
     self = [super init];
     if (self) {
         _url = [NSURL URLWithString:urlString];
@@ -45,8 +44,7 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     self.networkManager = [[NetworkManager alloc] init];
@@ -59,8 +57,7 @@
 
 /* Test cancelable request
  */
-- (void)addCancelAndResumeDownload
-{
+- (void)addCancelAndResumeDownload {
     NSURL *url = [NSURL URLWithString:@"http://images.metmuseum.org/CRDImages/ep/original/DP145921.jpg"];
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *path = [documentsPath stringByAppendingPathComponent:[url lastPathComponent]];
@@ -121,8 +118,7 @@
  *
  *  Included one bad URL to test error handling.
  */
-- (void)addDownloadOperations
-{
+- (void)addDownloadOperations {
     NSArray *downloadURLStrings = @[@"http://images.metmuseum.org/CRDImages/ep/original/DP145921.jpg",
                                     @"http://images.metmuseum.org/CRDImages/ep/original/DP121326.jpg",
                                     @"http://images.metmuseum.org/CRDImages/ep/original/DP145399.jpg",
@@ -175,8 +171,7 @@
  *  Included one bad URL to test error handling.
  */
 
-- (void)addDataOperations
-{
+- (void)addDataOperations {
     NSArray *downloadURLStrings = @[@"http://spaceflight.nasa.gov/gallery/images/apollo/apollo17/hires/as17-134-20380.jpg",
                                     @"http://spaceflight.nasa.gov/gallery/images/apollo/apollo17/hires/as17-140-21497.jpg",
                                     @"http://spaceflight.nasa.gov/gallery/images/apollo/apollo17/hires/as17-148-22727.jpg",
@@ -227,13 +222,11 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.requests count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"NetworkRequestProgressCell";
     NetworkRequestProgressCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 

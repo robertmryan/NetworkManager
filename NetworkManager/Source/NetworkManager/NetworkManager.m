@@ -28,14 +28,12 @@ static NSMutableDictionary *_backgroundSessions;
  *
  * @return A session manager.
  */
-- (instancetype)init
-{
+- (instancetype)init {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     return [self initWithSessionConfiguration:configuration];
 }
 
-- (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)configuration
-{
+- (instancetype)initWithSessionConfiguration:(NSURLSessionConfiguration *)configuration {
     NSParameterAssert(configuration);
 
     self = [super init];
@@ -46,8 +44,7 @@ static NSMutableDictionary *_backgroundSessions;
     return self;
 }
 
-+ (instancetype) backgroundSessionWithIdentifier:(NSString *)identifier
-{
++ (instancetype) backgroundSessionWithIdentifier:(NSString *)identifier {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _backgroundSessions = [[NSMutableDictionary alloc] init];
@@ -63,10 +60,11 @@ static NSMutableDictionary *_backgroundSessions;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-        if ([NSURLSessionConfiguration respondsToSelector:@selector(backgroundSessionConfigurationWithIdentifier:)])
+        if ([NSURLSessionConfiguration respondsToSelector:@selector(backgroundSessionConfigurationWithIdentifier:)]) {
             configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:identifier];
-        else
+        } else {
             configuration = [NSURLSessionConfiguration backgroundSessionConfiguration:identifier];
+        }
 
 #pragma clang diagnostic pop
 
@@ -84,8 +82,7 @@ static NSMutableDictionary *_backgroundSessions;
 
 - (NetworkDataTaskOperation *)dataOperationWithURL:(NSURL *)url
                                    progressHandler:(ProgressHandler)progressHandler
-                                 completionHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler;
-{
+                                 completionHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler; {
     NSParameterAssert(url);
 
     return [self dataOperationWithRequest:[NSURLRequest requestWithURL:url]
@@ -95,8 +92,7 @@ static NSMutableDictionary *_backgroundSessions;
 
 - (NetworkDataTaskOperation *)dataOperationWithRequest:(NSURLRequest *)request
                                        progressHandler:(ProgressHandler)progressHandler
-                                     completionHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler;
-{
+                                     completionHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler; {
     NSParameterAssert(request);
 
     NetworkDataTaskOperation *operation;
@@ -114,8 +110,7 @@ static NSMutableDictionary *_backgroundSessions;
 
 - (NetworkDownloadTaskOperation *)downloadOperationWithURL:(NSURL *)url
                                        didWriteDataHandler:(DidWriteDataHandler)didWriteDataHandler
-                               didFinishDownloadingHandler:(DidFinishDownloadingHandler)didFinishDownloadingHandler
-{
+                               didFinishDownloadingHandler:(DidFinishDownloadingHandler)didFinishDownloadingHandler {
     NSParameterAssert(url);
 
     NetworkDownloadTaskOperation *operation;
@@ -131,8 +126,7 @@ static NSMutableDictionary *_backgroundSessions;
 
 - (NetworkDownloadTaskOperation *)downloadOperationWithRequest:(NSURLRequest *)request
                                            didWriteDataHandler:(DidWriteDataHandler)didWriteDataHandler
-                                   didFinishDownloadingHandler:(DidFinishDownloadingHandler)didFinishDownloadingHandler
-{
+                                   didFinishDownloadingHandler:(DidFinishDownloadingHandler)didFinishDownloadingHandler {
     NSParameterAssert(request);
 
     NetworkDownloadTaskOperation *operation;
@@ -150,8 +144,7 @@ static NSMutableDictionary *_backgroundSessions;
 
 - (NetworkDownloadTaskOperation *)downloadOperationWithResumeData:(NSData *)resumeData
                                               didWriteDataHandler:(DidWriteDataHandler)didWriteDataHandler
-                                      didFinishDownloadingHandler:(DidFinishDownloadingHandler)didFinishDownloadingHandler
-{
+                                      didFinishDownloadingHandler:(DidFinishDownloadingHandler)didFinishDownloadingHandler {
     NSParameterAssert(resumeData);
 
     NetworkDownloadTaskOperation *operation;
@@ -170,8 +163,7 @@ static NSMutableDictionary *_backgroundSessions;
 - (NetworkUploadTaskOperation *)uploadOperationWithURL:(NSURL *)url
                                                   data:(NSData *)data
                                 didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                           didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler
-{
+                           didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler {
     NSParameterAssert(url);
 
     NetworkUploadTaskOperation *operation;
@@ -188,8 +180,7 @@ static NSMutableDictionary *_backgroundSessions;
 - (NetworkUploadTaskOperation *)uploadOperationWithRequest:(NSURLRequest *)request
                                                       data:(NSData *)data
                                     didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                               didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler
-{
+                               didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler {
     NSParameterAssert(request);
 
     NetworkUploadTaskOperation *operation;
@@ -208,8 +199,7 @@ static NSMutableDictionary *_backgroundSessions;
 - (NetworkUploadTaskOperation *)uploadOperationWithURL:(NSURL *)url
                                                fileURL:(NSURL *)fileURL
                                 didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                           didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler
-{
+                           didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler {
     NSParameterAssert(url);
 
     return [self uploadOperationWithRequest:[NSURLRequest requestWithURL:url]
@@ -221,8 +211,7 @@ static NSMutableDictionary *_backgroundSessions;
 - (NetworkUploadTaskOperation *)uploadOperationWithRequest:(NSURLRequest *)request
                                                    fileURL:(NSURL *)url
                                     didSendBodyDataHandler:(DidSendBodyDataHandler)didSendBodyDataHandler
-                           didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler
-{
+                           didCompleteWithDataErrorHandler:(DidCompleteWithDataErrorHandler)didCompleteWithDataErrorHandler {
     NSParameterAssert(request);
 
     NetworkUploadTaskOperation *operation;
@@ -240,8 +229,7 @@ static NSMutableDictionary *_backgroundSessions;
 
 #pragma mark - NSOperationQueue
 
-- (NSOperationQueue *)networkQueue
-{
+- (NSOperationQueue *)networkQueue {
     @synchronized(self) {
         if (!_networkQueue) {
             _networkQueue = [[NSOperationQueue alloc] init];
@@ -254,15 +242,13 @@ static NSMutableDictionary *_backgroundSessions;
     }
 }
 
-- (void)addOperation:(NSOperation *)operation
-{
+- (void)addOperation:(NSOperation *)operation {
     [self.networkQueue addOperation:operation];
 }
 
 #pragma mark - NSURLSessionDelegate
 
-- (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error
-{
+- (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error {
     if (self.didBecomeInvalidWithError) {
         dispatch_sync(self.completionQueue ?: dispatch_get_main_queue(), ^{
             self.didBecomeInvalidWithError(self, error);
@@ -270,8 +256,7 @@ static NSMutableDictionary *_backgroundSessions;
     }
 }
 
-- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler
-{
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler {
     if (self.didReceiveChallenge) {
         self.didReceiveChallenge(self, challenge, completionHandler);
     } else {
@@ -283,8 +268,7 @@ static NSMutableDictionary *_backgroundSessions;
     }
 }
 
-- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session;
-{
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session; {
     BOOL __block shouldCallCompletionHandler;
 
     // If urlSessionDidFinishEventsHandler available, call it to determine whether
@@ -313,8 +297,7 @@ static NSMutableDictionary *_backgroundSessions;
 
 #pragma mark - NSURLSessionTaskDelegate
 
-- (void)removeTaskOperationForTask:(NSURLSessionTask *)task
-{
+- (void)removeTaskOperationForTask:(NSURLSessionTask *)task {
     NetworkTaskOperation *taskOperation = self.operations[@(task.taskIdentifier)];
 
     if (!taskOperation)
@@ -328,8 +311,7 @@ static NSMutableDictionary *_backgroundSessions;
     }];
 }
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
-{
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
     NetworkTaskOperation *operation = self.operations[@(task.taskIdentifier)];
 
     if ([operation respondsToSelector:@selector(URLSession:task:didCompleteWithError:)] && operation.didCompleteWithDataErrorHandler) {
@@ -347,8 +329,7 @@ static NSMutableDictionary *_backgroundSessions;
     [self removeTaskOperationForTask:task];
 }
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler
-{
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler {
     NetworkTaskOperation *operation = self.operations[@(task.taskIdentifier)];
 
     // if the operation can handle challenge, then give it one shot, otherwise, we'll take over here
@@ -370,66 +351,63 @@ static NSMutableDictionary *_backgroundSessions;
     }
 }
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didSendBodyData:(int64_t)bytesSent totalBytesSent:(int64_t)totalBytesSent totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend
-{
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didSendBodyData:(int64_t)bytesSent totalBytesSent:(int64_t)totalBytesSent totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
     NetworkTaskOperation *operation = self.operations[@(task.taskIdentifier)];
 
     if ([operation respondsToSelector:@selector(URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:)])
         [operation URLSession:session task:task didSendBodyData:bytesSent totalBytesSent:totalBytesSent totalBytesExpectedToSend:totalBytesExpectedToSend];
 }
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task needNewBodyStream:(void (^)(NSInputStream *bodyStream))completionHandler
-{
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task needNewBodyStream:(void (^)(NSInputStream *bodyStream))completionHandler {
     NetworkTaskOperation *operation = self.operations[@(task.taskIdentifier)];
 
-    if ([operation respondsToSelector:@selector(URLSession:task:needNewBodyStream:)])
+    if ([operation respondsToSelector:@selector(URLSession:task:needNewBodyStream:)]) {
         [operation URLSession:session task:task needNewBodyStream:completionHandler];
-    else
+    } else {
         completionHandler(nil);
+    }
 }
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler
-{
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler {
     NetworkTaskOperation *operation = self.operations[@(task.taskIdentifier)];
 
-    if ([operation respondsToSelector:@selector(URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:)])
+    if ([operation respondsToSelector:@selector(URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:)]) {
         [operation URLSession:session task:task willPerformHTTPRedirection:response newRequest:request completionHandler:completionHandler];
-    else
+    } else {
         completionHandler(request);
+    }
 }
 
 #pragma mark - NSURLSessionDataDelegate
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
-{
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
     NetworkDataTaskOperation *operation = self.operations[@(dataTask.taskIdentifier)];
 
-    if ([operation respondsToSelector:@selector(URLSession:dataTask:didReceiveResponse:completionHandler:)])
+    if ([operation respondsToSelector:@selector(URLSession:dataTask:didReceiveResponse:completionHandler:)]) {
         [operation URLSession:session dataTask:dataTask didReceiveResponse:response completionHandler:completionHandler];
-    else
+    } else {
         completionHandler(NSURLSessionResponseAllow);
+    }
 }
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
-{
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
     NetworkDataTaskOperation *operation = self.operations[@(dataTask.taskIdentifier)];
 
     if ([operation respondsToSelector:@selector(URLSession:dataTask:didReceiveData:)])
         [operation URLSession:session dataTask:dataTask didReceiveData:data];
 }
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask willCacheResponse:(NSCachedURLResponse *)proposedResponse completionHandler:(void (^)(NSCachedURLResponse *cachedResponse))completionHandler
-{
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask willCacheResponse:(NSCachedURLResponse *)proposedResponse completionHandler:(void (^)(NSCachedURLResponse *cachedResponse))completionHandler {
     NetworkDataTaskOperation *operation = self.operations[@(dataTask.taskIdentifier)];
 
-    if ([operation respondsToSelector:@selector(URLSession:dataTask:willCacheResponse:completionHandler:)])
+    if ([operation respondsToSelector:@selector(URLSession:dataTask:willCacheResponse:completionHandler:)]) {
         [operation URLSession:session dataTask:dataTask willCacheResponse:proposedResponse completionHandler:completionHandler];
-    else
+    } else {
         completionHandler(proposedResponse);
+    }
 }
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask
-{
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
     NetworkDataTaskOperation *operation = self.operations[@(dataTask.taskIdentifier)];
 
     if ([operation respondsToSelector:@selector(URLSession:dataTask:didBecomeDownloadTask:)])
@@ -438,24 +416,21 @@ static NSMutableDictionary *_backgroundSessions;
 
 #pragma mark - NSURLSessionDownloadDelegate
 
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
-{
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     NetworkDownloadTaskOperation *operation = self.operations[@(downloadTask.taskIdentifier)];
 
     if ([operation respondsToSelector:@selector(URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:)])
         [operation URLSession:session downloadTask:downloadTask didWriteData:bytesWritten totalBytesWritten:totalBytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
 }
 
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
-{
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes {
     NetworkDownloadTaskOperation *operation = self.operations[@(downloadTask.taskIdentifier)];
 
     if ([operation respondsToSelector:@selector(URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:)])
         [operation URLSession:session downloadTask:downloadTask didResumeAtOffset:fileOffset expectedTotalBytes:expectedTotalBytes];
 }
 
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
-{
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
     NetworkDownloadTaskOperation *operation = self.operations[@(downloadTask.taskIdentifier)];
 
     if ([operation respondsToSelector:@selector(URLSession:downloadTask:didFinishDownloadingToURL:)] && operation.didFinishDownloadingHandler) {
